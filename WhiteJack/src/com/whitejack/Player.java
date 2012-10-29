@@ -2,10 +2,12 @@ package com.whitejack;
 
 public abstract class Player {
 	
+	//Set default variables
 	public String userName;
 	protected int[] Hand;
-	public boolean isActiveUser;
+	public boolean isActiveUser = false;
 	public int balance;
+	public boolean isPlayable;
 	
 	public Player() {
 		

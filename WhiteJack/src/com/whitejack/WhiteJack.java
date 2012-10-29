@@ -14,7 +14,7 @@ public class WhiteJack {
 		
 		//Start GameMaker
 		GameMaker GM = new GameMaker();
-		GM.initGame();
+		GM.initGame(1);
 	}
 
 }

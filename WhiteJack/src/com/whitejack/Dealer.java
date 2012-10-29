@@ -7,7 +7,6 @@ public class Dealer extends Player {
 	protected int handValue;
 	public boolean isActiveUser = false;
 	protected int balance;
-	private Card card[];
 	
 	public Dealer() {
 		

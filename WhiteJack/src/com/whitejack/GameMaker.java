@@ -1,17 +1,18 @@
 package com.whitejack;
 
 import java.util.Scanner;
-
+import java.util.logging.Logger;
 
 public class GameMaker {
 
 	private boolean stand=false;
 	private boolean bust=false;
+	private static Logger log = Logger.getLogger(GameMaker.class.getName());
 
 	public GameMaker() {
+		log.info("GameMaker Started!");
 		initGame();
-
-
+		
 	}
 
 	/**
@@ -23,13 +24,15 @@ public class GameMaker {
 
 		//Debug line for verification of Starting addPlayer() method
 		player.isActiveUser = true;
-		System.out.println("Player: "+ player.userName+ " has been added to the game!");
+		log.info("Player '"+player.userName+"' added to game!");
+		
+		//System.out.println("Player: "+ player.userName+ " has been added to the game!");  //Old debug line
 
 	}
 
 	/**
 	 * API comment: Removes a player of type Player from the Game. GameMaker 
-	 * sets the Player to be unplayable unless the player object is playable
+	 * sets the Player to be un-playable unless the player object is playable
 	 * set by the addPlayer method.
 	 * @param player
 	 */
@@ -48,10 +51,6 @@ public class GameMaker {
 	 */
 	public void initGame() {
 
-		//int amountOfPlayers;
-
-		System.out.println("Starting WhiteJack Game Session\n");
-
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 		Deck deck = new Deck();
@@ -62,63 +61,42 @@ public class GameMaker {
 
 		//Requests the amount of players to be added to the game
 		//TODO: Implement multiplayer functionality
-		//Circumvented for sake of lacking multiplayer functionality
-		/*
-
-		try {
-			amountOfPlayers = input.nextInt();
-			if(amountOfPlayers!=1) {
-				System.out.println("Please enter a valid number of players (Currently 1): ");
-				amountOfPlayers = input.nextInt();
-			}
-		}
-		catch (NumberFormatException e) {
-			System.out.println("That is not a valid entry! Please enter a number of players (Currently 1): ");
-			amountOfPlayers = input.nextInt();
-		}
-		finally {
-			input.close();
-		}
-		 */
+		
 		//Collect userName
 		System.out.println("Please enter your name: ");
 		String userName = input.nextLine();
 		User user = new User(userName, userName);
 		user.isPlayable = true;
 		user.isActiveUser = true;
+		log.fine("User '"+ userName+ "' has been set up as Playable");
 
-		System.out.println("Thank you "+user.userName+", Welcome to WhiteJack.");
-
-		//Start GameTable for WhiteJack
-		/*
-		GameTable gametable = new GameTable();
-		 */
+		System.out.println("Thank you "+ userName +", Welcome to WhiteJack.");
 
 		//Request a bet amount
 		System.out.println("How much would you like to bet? ");
 
-		try {
-			user.bet=input.nextInt();
-		} catch(NumberFormatException e) {
-			System.out.println("That wasn't a valid amount, please enter a numerical integer to bet!");
-		} finally {
-			System.out.println("You have bet: $"+user.bet);
+		while(!input.hasNextInt()) {
+			log.finest("[GameMaker]: User has entered something else than an Integer!");
+			System.out.println("Please enter a number!");
+			input.nextLine();
 		}
+		user.bet=input.nextInt();
+		log.fine("[GameMaker]: User has set their bet to "+user.bet);
 
 		//Deal Cards
 
-		if(deck.isShuffled = true) {
-			System.out.println("Deck has just been shuffled by GameMaker");  //Debugging line
+		if(deck.isShuffled != true) {
+			log.finest("Deck has just been shuffled by GameMaker");  //Debugging line
 			deck.shuffle();
 		}
 		
 		dealer.recieveCard(deck);
-		System.out.println("[GameMaker] The Dealer has just recieved their first card");  //Debugging line
+		log.finer("[GameMaker] The Dealer has just recieved their first card");  //Debugging line
 		
 		dealer.recieveCard(deck);
-		System.out.println("[GameMaker] The Dealer has just recieved their second card.");  //Debugging line
+		log.finer("[GameMaker] The Dealer has just recieved their second card.");  //Debugging line
 		
-		System.out.println("[GameMaker] The Dealer's hand value is: "+ dealer.getHandValue());  //Debugging line
+		log.fine("[GameMaker] The Dealer's hand value is: "+ dealer.getHandValue());  //Debugging line
 
 		user.recieveCard(deck);
 		user.recieveCard(deck);
@@ -132,7 +110,7 @@ public class GameMaker {
 			try {
 				inputAction= input.nextInt();
 			} catch (NumberFormatException e) {
-				System.out.println("Sorry, but your input was invalid, please try again.\n");
+				System.out.println("Sorry, but your input was invalid, please try again.\n");  //Debugging 
 				System.out.println("Do you wish to Hit(1), Stay (2), or Surrender(3)? ");
 			} finally {
 				if(inputAction==1)

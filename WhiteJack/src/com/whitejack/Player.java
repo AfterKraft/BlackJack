@@ -11,6 +11,8 @@
 
 package com.whitejack;
 
+import java.util.logging.Logger;
+
 public abstract class Player {
 	
 	//Set default variables
@@ -22,6 +24,9 @@ public abstract class Player {
 	public boolean isPlayable;
 	private boolean ace;
 	public Card card[];
+	
+	//Set up logger
+	private static final Logger log = Logger.getLogger(Player.class.getName());
 
 	public int cardCount=0;
 	
@@ -37,19 +42,19 @@ public abstract class Player {
 	}
 	
 	public void recieveCard(Deck deck) {
-		System.out.println("[Player] Just to check that Player.recieveCard() has just been called.");  //Debugging line
+		log.fine("[Player] Just to check that Player.recieveCard() has just been called.");  //Debugging line
 		
 		card[cardCount] = deck.dealCard();
-		System.out.println("[Player] The Deck has just dealt a card to player by player");  //Debugging line
+		log.finer("[Player] The Deck has just dealt a card to player by player");  //Debugging line
 		
 		handValue += card[cardCount].getValue();
-		System.out.println("[Palyer] The player's hand value has just been calculated.");  //Debugging line
+		log.finer("[Palyer] The player's hand value has just been calculated.");  //Debugging line
 		
 		if(card[cardCount].getValue()==11) {
 			ace=true;
 		}
 		cardCount++;
-		System.out.println("[Player] The Player's card count has just gone up!"); //Debugging line
+		log.finer("[Player] The Player's card count has just gone up!"); //Debugging line
 	}
 	
 	public Card getCard() {

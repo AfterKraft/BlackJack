@@ -1,10 +1,13 @@
 package com.whitejack;
 
+import java.util.logging.Logger;
+
 public class Deck extends Card{
 
 	private Card[] card;
 	private int i;
 	public boolean isShuffled;
+	private static final Logger log = Logger.getLogger(Deck.class.getName());
 
 	public Deck() {
 
@@ -33,6 +36,8 @@ public class Deck extends Card{
 
 
 	public void shuffle() {
+		
+		log.fine("[Deck]: Deck will be shuffled.");  //Debugging Line
 		i=0;
 		Card tempCard = new Card();
 		int random=0,count=0,totalCards=0;
@@ -44,19 +49,20 @@ public class Deck extends Card{
 			card[random]=tempCard;
 			totalCards++;
 		}
+		log.fine("[Deck]: Deck shuffled.");  //Debugging Line
 	}
 
 	public Card dealCard() {
 		
-		System.out.println("[Deck] Check to make sure the Deck.dealcard has been started. in Deck");  //Debugging line
+		log.finer("[Deck] Check to make sure the Deck.dealcard has been started. in Deck");  //Debugging line
 		
 		Card temp=card[i];
-		System.out.println("[Deck] The temporary temp object of type Card has been created!");  //Debugging line
+		log.finest("[Deck] The temporary temp object of type Card has been created!");  //Debugging line
 		
 		i++;
-		System.out.println("[Deck] i has been post incremented!");  //Debugging line
+		log.finest("[Deck] i has been post incremented!");  //Debugging line
 		
-		System.out.println("[Deck] temp has a value of: "+ temp); //Debugging line
+		log.finer("[Deck] temp has a value of: "+ temp); //Debugging line
 		return temp;
 		
 	}

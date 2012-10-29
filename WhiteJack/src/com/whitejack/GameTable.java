@@ -5,6 +5,7 @@ public class GameTable {
 	public Object Background;
 	public Object TableLayout;
 	
+	
 	public void getCard() {
 		
 	}

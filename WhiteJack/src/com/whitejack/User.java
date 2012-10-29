@@ -1,5 +1,4 @@
 package com.whitejack;
-import java.util.Calendar;
 
 import com.whitejack.Player;
 import com.whitejack.Utility.Time;
@@ -7,18 +6,18 @@ import com.whitejack.Utility.Time;
 public class User extends Player {
 	
 	public String playerName;
-	public boolean isActive;
 	public String dateCreated;
-	public boolean isPlayable= true;
+	public int bet;
 
 	/** 
 	 * User constrcutor creates a default user of default balance and generic
 	 * username and stores the dateCreated as a string for storage purposes
 	 */
 	public User() {
-		
-		String playerName = "DefaultUser";
-		boolean isPlayable = true;
+		balance = 300;
+		playerName = "DefaultUser";
+		userName = playerName;
+		isPlayable = true;
 		Time time = new Time();
 		dateCreated = time.getCurrentTime();
 		
@@ -29,8 +28,16 @@ public class User extends Player {
 		this.userName = userName;
 	}
 	
+	public void bet(int amount) {
+		balance -= amount;
+	}
+	
 	public int getCurrentBalance() {
 		return this.balance;
+	}
+	
+	public void recieveMoney(int amount) {
+		balance +=amount;
 	}
 	
 	public void displayStatus() {

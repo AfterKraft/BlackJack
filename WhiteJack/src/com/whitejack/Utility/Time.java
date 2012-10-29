@@ -18,7 +18,7 @@ public class Time {
 	private int day;
 	private int hour;
 	private int minute;
-	private int second;
+	//private int second;   //Not used yet
 	private int timezone;
 	
 	//Sets the current time based off the SYSTEM's time and timezone

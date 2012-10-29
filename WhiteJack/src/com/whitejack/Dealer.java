@@ -2,10 +2,12 @@ package com.whitejack;
 
 public class Dealer extends Player {
 	
-	private String name;
-	private boolean isInPlay;
-	private int[] Hand;
 	public boolean isPlayable = false;
+	public String userName;
+	protected int handValue;
+	public boolean isActiveUser = false;
+	protected int balance;
+	private Card card[];
 	
 	public Dealer() {
 		
@@ -16,10 +18,6 @@ public class Dealer extends Player {
 	}
 	
 	public void dealHand() {
-		
-	}
-	
-	public void dealCard() {
 		
 	}
 

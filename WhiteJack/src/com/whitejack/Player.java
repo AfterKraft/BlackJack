@@ -1,3 +1,14 @@
+/*
+ * Player class
+ * 
+ * Version 0.1_dev
+ * 
+ * Copyright (c) Ramel Henderson, David Brown, Rory Andrews, Kevin Nause, Joseph Cohen, Gabriel Harris-Rouquette  2012
+ * 
+ * All Rights Reserved
+ * 
+ */
+
 package com.whitejack;
 
 public abstract class Player {
@@ -6,14 +17,44 @@ public abstract class Player {
 	public String userName;
 	protected int[] Hand;
 	public boolean isActiveUser = false;
-	public int balance;
+	protected int balance;
+	private int handValue;
 	public boolean isPlayable;
+	private boolean ace;
+	public Card card[];
+
+	public int cardCount=0;
 	
 	public Player() {
+		
+		card = new Card[10];  //For the sake of initializing
 		
 	}
 	
 	public Player(String username) {
+		card = new Card[10];  //For the sake of initializing
+		
+	}
+	
+	public void recieveCard(Deck deck) {
+		System.out.println("[Player] Just to check that Player.recieveCard() has just been called.");  //Debugging line
+		
+		card[cardCount] = deck.dealCard();
+		System.out.println("[Player] The Deck has just dealt a card to player by player");  //Debugging line
+		
+		handValue += card[cardCount].getValue();
+		System.out.println("[Palyer] The player's hand value has just been calculated.");  //Debugging line
+		
+		if(card[cardCount].getValue()==11) {
+			ace=true;
+		}
+		cardCount++;
+		System.out.println("[Player] The Player's card count has just gone up!"); //Debugging line
+	}
+	
+	public Card getCard() {
+		
+		return card[--cardCount];
 		
 	}
 	
@@ -37,8 +78,30 @@ public abstract class Player {
 		
 	}
 	
+	/**
+	 * This will return a string array for the player's status
+	 * which includes username, balance, isActiveuser, and Hand value
+	 * @return
+	 */
+	
+	public String[] getStats() {
+		//TODO: implement the array format for Status
+		String[] status = new String[5];
+		status[0] = userName;
+		status[1] = Integer.toString(balance);
+		status[2] = Boolean.toString(isActiveUser);
+		status[3] = Integer.toString(Hand[0]);
+		
+		return status;
+	}
+	
 	public int getHandValue() {
-		return Hand[0];
+		
+		if((handValue>21)&&(ace)) {   //Removes 10 points from handValue if there is an Ace being counted as 11
+			handValue -= 10;
+		}
+		
+		return handValue;
 		
 	}
 	

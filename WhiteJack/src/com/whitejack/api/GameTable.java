@@ -1,9 +1,10 @@
-package com.whitejack;
+package com.whitejack.api;
 
-public class Deck extends Card{
+public class GameTable {
+
+	public Object Background;
+	public Object TableLayout;
 	
-	public String[] Suits;
-	public String[] Rank;
 	
 	public void getCard() {
 		
@@ -17,5 +18,4 @@ public class Deck extends Card{
 		
 	}
 	
-
 }

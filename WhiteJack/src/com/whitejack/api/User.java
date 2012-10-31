@@ -2,8 +2,8 @@ package com.whitejack.api;
 
 import java.util.logging.Logger;
 
-import com.whitejack.Utility.Time;
 import com.whitejack.api.Player;
+import com.whitejack.util.Time;
 
 public class User extends Player {
 	

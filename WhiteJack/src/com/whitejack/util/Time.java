@@ -1,4 +1,4 @@
-package com.whitejack.Utility;
+package com.whitejack.util;
 
 import java.util.*;
 

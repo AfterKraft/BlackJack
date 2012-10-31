@@ -1,17 +1,17 @@
-package com.whitejack;
+package com.whitejack.api;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+
 public class GameMaker {
-
+	
+	protected Game game;
+	
 	private static Logger log = Logger.getLogger(GameMaker.class.getName());
-	private int game;
-
+	
 	public GameMaker() {
 		log.info("GameMaker Started!");
-		initGame(game);
-
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class GameMaker {
 	 * 
 	 * Future: Could be used to initialize different types of card games.
 	 */
-	public void initGame(int game) {
+	public void initGame(GameFactory gameFactory) {
 
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
@@ -67,17 +67,19 @@ public class GameMaker {
 
 		System.out.println("Thank you "+ userName +", Welcome to WhiteJack.");
 
+		game = gameFactory.createGame(dealer, deck, user);
+
+		
 		//Created switch statement for possibility to make other card games ;)
+		
+		/*
 		switch(game) {
 		case 1: BlackJack blackjack = new BlackJack(dealer, deck, user);
 				blackjack.start(); break;
 		default: BlackJack blackjack1 = new BlackJack(dealer, deck, user);
 		blackjack1.start(); break;
 		}
-
-
-
-
+		*/
 	}
 
 	public void saveGame() {
@@ -97,6 +99,12 @@ public class GameMaker {
 
 	public void getWinHand() {
 
+	}
+
+	public void startGame() {
+		// TODO Auto-generated method stub
+		game.start();
+		
 	}
 
 }

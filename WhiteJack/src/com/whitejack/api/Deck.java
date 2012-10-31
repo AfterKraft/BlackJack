@@ -1,4 +1,4 @@
-package com.whitejack;
+package com.whitejack.api;
 
 import java.util.logging.Logger;
 

@@ -1,4 +1,8 @@
-package com.whitejack;
+package com.whitejack.app;
+
+import com.whitejack.api.GameFactory;
+import com.whitejack.api.GameMaker;
+import com.whitejack.blackjack.BlackJackFactory;
 
 public class WhiteJack {
 	
@@ -14,7 +18,9 @@ public class WhiteJack {
 		
 		//Start GameMaker
 		GameMaker GM = new GameMaker();
-		GM.initGame(1);
+		GameFactory gf = new BlackJackFactory();
+		GM.initGame(gf);
+		GM.startGame();
 	}
 
 }

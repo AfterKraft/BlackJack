@@ -1,12 +1,17 @@
-package com.whitejack;
+package com.whitejack.blackjack;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import com.whitejack.api.Dealer;
+import com.whitejack.api.Deck;
+import com.whitejack.api.Game;
+import com.whitejack.api.User;
+
 /**
- * BlackJack class is to handle game logic for BlackJack. Here, the GameMaker will make a new
+ * BlackJack class is to handle game logic for BlackJack. Here, the BlackJack will make a new
  * Object of BlackJack to run the game, while allowing another game to be created. This
- * also cleans up code in GameMaker & BlackJack.
+ * also cleans up code in BlackJack & BlackJack.
  * @author gabizou
  *
  */
@@ -34,34 +39,31 @@ public class BlackJack extends Game {
 		//Requests the amount of players to be added to the game
 		//TODO: Implement multiplayer functionality
 
-		//Collect userName
-		
-
 		//Request a bet amount
 		System.out.println("How much would you like to bet? ");
 
 		while(!input.hasNextInt()) {
-			log.finest("[GameMaker]: User has entered something else than an Integer!");
+			log.finest("[BlackJack]: User has entered something else than an Integer!");
 			System.out.println("Please enter a number!");
 			input.nextLine();
 		}
 		user.bet=input.nextInt();
-		log.fine("[GameMaker]: User has set their bet to "+user.bet);
+		log.fine("[BlackJack]: User has set their bet to "+user.bet);
 
 		//Deal Cards
 
 		if(deck.isShuffled != true) {
-			log.finest("Deck has just been shuffled by GameMaker");  //Debugging line
+			log.finest("Deck has just been shuffled by BlackJack");  //Debugging line
 			deck.shuffle();
 		}
 
 		dealer.recieveCard(deck);
-		log.finer("[GameMaker] The Dealer has just recieved their first card");  //Debugging line
+		log.finer("[BlackJack] The Dealer has just recieved their first card");  //Debugging line
 
 		dealer.recieveCard(deck);
-		log.finer("[GameMaker] The Dealer has just recieved their second card.");  //Debugging line
+		log.finer("[BlackJack] The Dealer has just recieved their second card.");  //Debugging line
 
-		log.fine("[GameMaker] The Dealer's hand value is: "+ dealer.getHandValue());  //Debugging line
+		log.fine("[BlackJack] The Dealer's hand value is: "+ dealer.getHandValue());  //Debugging line
 
 		user.recieveCard(deck);
 		user.recieveCard(deck);

@@ -1,4 +1,4 @@
-package com.whitejack;
+package com.whitejack.api;
 
 public class Dealer extends Player {
 	

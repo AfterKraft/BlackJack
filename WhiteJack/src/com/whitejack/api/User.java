@@ -1,15 +1,16 @@
-package com.whitejack;
+package com.whitejack.api;
 
 import java.util.logging.Logger;
 
-import com.whitejack.Player;
 import com.whitejack.Utility.Time;
+import com.whitejack.api.Player;
 
 public class User extends Player {
 	
 	public String playerName;
 	public String dateCreated;
 	public int bet;
+	public int balance;
 	private static Logger logger = Logger.getLogger(User.class.getName());
 
 	/** 

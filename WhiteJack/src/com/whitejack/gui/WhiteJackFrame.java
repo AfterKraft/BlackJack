@@ -1,0 +1,80 @@
+package com.whitejack.gui;
+
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.net.URL;
+
+public class WhiteJackFrame extends JFrame {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	Container c;
+	WhiteJackBackground mbgp;
+	JButton b1,b2,b3,b4,b5;
+	JPanel p1;
+
+	public static URL button1 = WhiteJackFrame.class.getResource("/images/HitBtn.jpg");
+	public static URL button2 = WhiteJackFrame.class.getResource("/images/StandBtn.jpg");
+	public static URL button3 = WhiteJackFrame.class.getResource("/images/DoubleDownBtn.jpg");
+	public static URL button4 = WhiteJackFrame.class.getResource("/images/SplitBtn.jpg");
+	public static URL button5 = WhiteJackFrame.class.getResource("/images/SurrenderBtn.jpg");
+	
+	public WhiteJackFrame() {
+		c=getContentPane();
+		mbgp= new WhiteJackBackground();
+		mbgp.setLayout(new BorderLayout());
+		p1=new JPanel();
+		p1.setLayout(new GridLayout(1,5));
+
+		b1 = new JButton("", new ImageIcon(button1));
+		b1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("HIT!");
+			}
+		});
+
+		b2 = new JButton("", new ImageIcon(button2));
+		b2.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("STAND!");
+			}
+		});
+		b3 = new JButton("", new ImageIcon(button3));
+		b3.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("DOUBLE DOWN!");
+			}
+		});
+		b4 = new JButton(new ImageIcon(button4));
+		b4.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("SPLIT!");
+			}
+		});
+		final ImageIcon Surrender = new ImageIcon(button5);
+		b5 = new JButton(Surrender);
+		b5.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+			{
+				System.out.println("SURRENDER!");
+			}
+		});
+		b5.setVisible(true);
+
+		p1.add(b1);
+		p1.add(b2);
+		p1.add(b3);
+		p1.add(b4);
+		p1.add(b5);
+		mbgp.add(p1,BorderLayout.SOUTH);
+		c.add(mbgp);
+	}
+}

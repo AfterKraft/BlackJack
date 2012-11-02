@@ -1,14 +1,15 @@
 package com.whitejack.api;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Logger;
 
 
 public class GameMaker {
 	
-	protected Game game;
+	private static Logger log = Logger.getLogger("WhiteJack");
 	
-	private static Logger log = Logger.getLogger(GameMaker.class.getName());
+	protected Game game;
 	
 	public GameMaker() {
 		log.info("GameMaker Started!");
@@ -63,7 +64,7 @@ public class GameMaker {
 		User user = new User(userName, userName);
 		user.isPlayable = true;
 		user.isActiveUser = true;
-		log.fine("User '"+ userName+ "' has been set up as Playable");
+		log.debug("User '"+ userName+ "' has been set up as Playable");
 
 		System.out.println("Thank you "+ userName +", Welcome to WhiteJack.");
 

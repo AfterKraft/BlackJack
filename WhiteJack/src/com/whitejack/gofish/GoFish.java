@@ -3,8 +3,6 @@ package com.whitejack.gofish;
 import com.whitejack.api.*;
 import java.util.Scanner;
 
-import org.apache.log4j.Logger;
-
 public class GoFish extends Game {
 
 	public Dealer dealer;

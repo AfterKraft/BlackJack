@@ -17,11 +17,11 @@ public class WhiteJackFrame extends JFrame {
 	JButton b1,b2,b3,b4,b5;
 	JPanel p1;
 
-	public static URL button1 = WhiteJackFrame.class.getResource("/images/HitBtn.jpg");
-	public static URL button2 = WhiteJackFrame.class.getResource("/images/StandBtn.jpg");
-	public static URL button3 = WhiteJackFrame.class.getResource("/images/DoubleDownBtn.jpg");
-	public static URL button4 = WhiteJackFrame.class.getResource("/images/SplitBtn.jpg");
-	public static URL button5 = WhiteJackFrame.class.getResource("/images/SurrenderBtn.jpg");
+	public static URL button1 = WhiteJackFrame.class.getResource("/com/whitejack/images/Buttons/HitBtnUp.gif");
+	public static URL button2 = WhiteJackFrame.class.getResource("/com/whitejack/images/Buttons/StandBtnUp.gif");
+	public static URL button3 = WhiteJackFrame.class.getResource("/com/whitejack/images/Buttons/DoubleDownBtnUp.gif");
+	public static URL button4 = WhiteJackFrame.class.getResource("/com/whitejack/images/Buttons/SplitBtnUp.gif");
+	public static URL button5 = WhiteJackFrame.class.getResource("/com/whitejack/images/Buttons/SurrenderBtnUp.gif");
 	
 	public WhiteJackFrame() {
 		c=getContentPane();

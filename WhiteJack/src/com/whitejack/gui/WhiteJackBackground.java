@@ -16,7 +16,7 @@ public class WhiteJackBackground extends JPanel {
 
 	private ImageIcon icon;
 	
-	public static URL background = WhiteJackBackground.class.getResource("/images/WhiteJackTable.jpg");
+	public static URL background = WhiteJackBackground.class.getResource("/com/whitejack/images/GameTable/WhiteJackTable0.jpg");
 	
 	
 	public WhiteJackBackground() {

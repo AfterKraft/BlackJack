@@ -11,9 +11,11 @@
 
 package com.whitejack.api;
 
-import java.util.logging.Logger;
+import org.apache.log4j.Logger;
 
 public abstract class Player {
+	
+	private static Logger log = Logger.getLogger("WhiteJack");
 	
 	//Set default variables
 	public String userName;
@@ -26,7 +28,6 @@ public abstract class Player {
 	public Card card[];
 	
 	//Set up logger
-	private static final Logger log = Logger.getLogger(Player.class.getName());
 
 	public int cardCount=0;
 	
@@ -42,24 +43,24 @@ public abstract class Player {
 	}
 	
 	public void recieveCard(Deck deck) {
-		log.fine("[Player] Just to check that Player.recieveCard() has just been called.");  //Debugging line
+		log.debug("[Player] Just to check that Player.recieveCard() has just been called.");  //Debugging line
 		
 		card[cardCount] = deck.dealCard();
-		log.finer("[Player] The Deck has just dealt a card to player by player");  //Debugging line
+		log.debug("[Player] The Deck has just dealt a card to player by player");  //Debugging line
 		
 		handValue += card[cardCount].getValue();
-		log.finer("[Palyer] The player's hand value has just been calculated.");  //Debugging line
+		log.debug("[Palyer] The player's hand value has just been calculated.");  //Debugging line
 		
 		if(card[cardCount].getValue()==11) {
 			ace=true;
 		}
 		cardCount++;
-		log.finer("[Player] The Player's card count has just gone up!"); //Debugging line
+		log.debug("[Player] The Player's card count has just gone up!"); //Debugging line
 	}
 	
 	public Card getCard() {
 		
-		return card[--cardCount];
+		return card[cardCount--];
 		
 	}
 	

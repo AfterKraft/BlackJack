@@ -1,12 +1,14 @@
 package com.whitejack.blackjack;
 
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 import com.whitejack.api.Dealer;
 import com.whitejack.api.Deck;
 import com.whitejack.api.Game;
+import com.whitejack.api.Player;
 import com.whitejack.api.User;
+
+import org.apache.log4j.Logger;
 
 /**
  * BlackJack class is to handle game logic for BlackJack. Here, the BlackJack will make a new
@@ -23,7 +25,7 @@ public class BlackJack extends Game {
 	public User user;
 	public boolean stand,bust;
 	
-	private static final Logger log = Logger.getLogger(BlackJack.class.getName());
+	private static final Logger log = Logger.getLogger("WhiteJack");
 	
 	public BlackJack(Dealer dealer, Deck deck, User user) {
 		this.dealer = dealer;
@@ -32,6 +34,7 @@ public class BlackJack extends Game {
 	}
 
 
+	@Override
 	public void start() {
 
 		Scanner input = new Scanner(System.in);
@@ -40,30 +43,30 @@ public class BlackJack extends Game {
 		//TODO: Implement multiplayer functionality
 
 		//Request a bet amount
-		System.out.println("How much would you like to bet? ");
+		System.out.print("How much would you like to bet? ");
 
 		while(!input.hasNextInt()) {
-			log.finest("[BlackJack]: User has entered something else than an Integer!");
+			log.debug("[BlackJack]: User has entered something else other than an Integer!");
 			System.out.println("Please enter a number!");
 			input.nextLine();
 		}
 		user.bet=input.nextInt();
-		log.fine("[BlackJack]: User has set their bet to "+user.bet);
+		log.debug("[BlackJack]: User has set their bet to "+user.bet);
 
 		//Deal Cards
 
 		if(deck.isShuffled != true) {
-			log.finest("Deck has just been shuffled by BlackJack");  //Debugging line
+			log.debug("Deck has just been shuffled by BlackJack");  //Debugging line
 			deck.shuffle();
 		}
 
 		dealer.recieveCard(deck);
-		log.finer("[BlackJack] The Dealer has just recieved their first card");  //Debugging line
+		log.debug("[BlackJack] The Dealer has just recieved their first card");  //Debugging line
 
 		dealer.recieveCard(deck);
-		log.finer("[BlackJack] The Dealer has just recieved their second card.");  //Debugging line
+		log.debug("[BlackJack] The Dealer has just recieved their second card.");  //Debugging line
 
-		log.fine("[BlackJack] The Dealer's hand value is: "+ dealer.getHandValue());  //Debugging line
+		log.debug("[BlackJack] The Dealer's hand value is: "+ dealer.getHandValue());  //Debugging line
 
 		user.recieveCard(deck);
 		user.recieveCard(deck);
@@ -82,10 +85,7 @@ public class BlackJack extends Game {
 			} finally {
 				if(inputAction==1)
 				{  
-					user.recieveCard(deck);
-					System.out.println("You drew a:");
-					System.out.println(user.getCard());
-					System.out.println("Your hand value is: "+ user.getHandValue());
+					hit(user);
 					if(user.getHandValue()>21)
 					{
 						System.out.println("BUST!");
@@ -106,9 +106,7 @@ public class BlackJack extends Game {
 		}
 
 		if(stand && !bust) {
-			System.out.println("\nThe dealer flips over his card to reviel a:");
-			System.out.println(dealer.getCard());
-			System.out.println("His hand value is: "+dealer.getHandValue());
+			hit(dealer);
 			while(dealer.getHandValue()<17)
 			{
 				System.out.println("The dealer draws another card");
@@ -139,6 +137,18 @@ public class BlackJack extends Game {
 			}
 
 		}
-
+	}
+	
+	/**
+	 * Universal hit method to which we can now use as all actors on the
+	 * game are of type Player. Generics are usefull man :)
+	 * @param player
+	 */
+	private void hit(Player player) {
+		
+		player.recieveCard(deck);
+		log.info(player.userName+" has drawn a " +player.getCard());
+		log.info(player.userName+"'s hand has a value of: "+player.getHandValue());
+		
 	}
 }

@@ -27,6 +27,8 @@ public class BlackJack extends Game {
 	
 	private static final Logger log = Logger.getLogger("WhiteJack");
 	
+	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
+	
 	public BlackJack(Dealer dealer, Deck deck, User user) {
 		this.dealer = dealer;
 		this.deck = deck;

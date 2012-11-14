@@ -1,21 +1,51 @@
 package com.whitejack.api;
 
-public class GameTable {
+import java.util.List;
+
+public abstract class GameTable {
 
 	public Object Background;
 	public Object TableLayout;
 	
+	protected Deck deck;
+	protected List<User> users;
+	protected Dealer dealer;
 	
-	public void getCard() {
-		
+	protected GameTable(Dealer dealer, Deck deck, List<User> users) {
+		this.deck = deck;
+		this.users = users;
+		this.dealer = dealer;
 	}
 	
-	public void shuffle() {
-		
-	}
+	abstract protected void getCard();
 	
-	public void initialize() {
-		
-	}
+	abstract protected void shuffle();
 	
+	abstract protected void initialize();
+	
+	public void playGame() {
+		initialize();
+		shuffle();
+		boolean run = true;
+		do {
+			getCard();
+			for (User user : users) {
+				run = play(user);
+				if (! run)
+					break;
+			}
+		} while (run);
+		gameOver();
+	}
+
+	/**
+	 * Enable the UI widgets to indicate it's the user's turn to play.
+	 * Enable the UI widgets so that the user can indicate his/her move; optionally requesting quitting the game.
+	 * 
+	 * @param user
+	 * @return true if we are to continue the game; false if the player requested quitting the game.
+	 */
+	abstract protected boolean play(User user);
+	
+	abstract protected void gameOver();
 }

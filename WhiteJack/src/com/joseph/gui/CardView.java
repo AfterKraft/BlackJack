@@ -27,7 +27,14 @@ public class CardView extends JLabel {
 	public CardView( Card card ) {
 		this.card = card;
 		defaultWidth = DEFAULT_WIDTH;
-
+	
+		String path = null;
+		try {
+			path = "./Cards/" + card + ".jpg";
+			originalImage = ImageIO.read( new File( path ) );
+		} catch ( IOException ioe ) {
+            System.err.println( "Couldn't find file: " + path );
+		}
 
 		String path = null;
 		try {

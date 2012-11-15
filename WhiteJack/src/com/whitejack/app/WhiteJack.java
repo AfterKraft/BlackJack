@@ -27,7 +27,7 @@ public class WhiteJack {
 		//Start GameMaker
 		GameMaker GM = new GameMaker();  //Initialize GameMaker
 		GameFactory gf = new BlackJackFactory();   //Initialize a BlackJack Game
-		GM.initGame(gf);   //Start the Game making process
+		GM.setupGame(gf);   //Start the Game making process
 		GM.startGame();   //Start playing BlackJack
 		
 		GUIManager gui = new GUIManager();

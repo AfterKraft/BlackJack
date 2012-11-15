@@ -11,8 +11,7 @@ public abstract class GameTable {
 	protected List<User> users;
 	protected Dealer dealer;
 	
-	protected GameTable(Dealer dealer, Deck deck, List<User> users) {
-		this.deck = deck;
+	protected GameTable(Dealer dealer, List<User> users) {
 		this.users = users;
 		this.dealer = dealer;
 	}

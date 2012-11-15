@@ -1,9 +1,11 @@
 package com.whitejack.api;
 
+import java.util.List;
+
 
 public interface GameFactory {
 
-	public Game createGame(Dealer dealer, Deck deck, User user);
+	public GameTable createGame(Dealer dealer, List<User> users);
 	
 	
 }

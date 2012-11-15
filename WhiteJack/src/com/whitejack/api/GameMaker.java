@@ -1,5 +1,6 @@
 package com.whitejack.api;
 
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -11,6 +12,8 @@ public class GameMaker {
 	private static Logger log = Logger.getLogger("WhiteJack");
 	
 	protected Game game;
+	protected List<User> users;
+	private int numOfPlayers;
 	
 	public GameMaker() {
 		log.info("GameMaker Started!");
@@ -21,9 +24,19 @@ public class GameMaker {
 	 * system checks. 
 	 * @param player
 	 */
-	public void addPlayer(Player player) {
+	public void addPlayers(int numOfPlayers) {
 
 		//Debug line for verification of Starting addPlayer() method
+		this.numOfPlayers = numOfPlayers;
+		for(int i=0; i<numOfPlayers; i++) {
+			User user = new User();
+			Scanner input = new Scanner(System.in);
+			System.out.println("Alright, Player "+(i+1)+": What is your name?");
+			user.userName = input.toString();
+			System.out.println("Thank you Player "+(i+1)+ )
+			
+		}
+		users.add(e)
 		player.isActiveUser = true;
 		log.info("Player '"+player.userName+"' added to game!");
 
@@ -50,26 +63,20 @@ public class GameMaker {
 	 * 
 	 * Future: Could be used to initialize different types of card games.
 	 */
-	public void initGame(GameFactory gameFactory) {
+	public void setupGame(GameFactory gameFactory) {
 
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
-		Deck deck = new Deck();
-		deck.shuffle();
-		deck.isShuffled = true;
+		
+		List<User> users;
 		
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Please enter your name: ");
-		String userName = input.nextLine();
-		User user = new User(userName, userName);
-		user.isPlayable = true;
-		user.isActiveUser = true;
-		log.debug("User '"+ userName+ "' has been set up as Playable");
+		System.out.println("How many players will be playing?");
+		numOfPlayers= input.nextInt();
+		addPlayers(numOfPlayers);
 
-		System.out.println("Thank you "+ userName +", Welcome to WhiteJack.");
-
-		game = gameFactory.createGame(dealer, deck, user);
+		game = gameFactory.createGame(dealer, user);
 
 		
 		//Created switch statement for possibility to make other card games ;)

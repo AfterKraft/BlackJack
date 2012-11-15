@@ -29,9 +29,8 @@ public class BlackJack extends Game {
 	
 	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
 	
-	public BlackJack(Dealer dealer, Deck deck, User user) {
+	public BlackJack(Dealer dealer, User user) {
 		this.dealer = dealer;
-		this.deck = deck;
 		this.user = user;
 	}
 

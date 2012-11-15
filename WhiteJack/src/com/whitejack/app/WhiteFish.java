@@ -22,7 +22,8 @@ public class WhiteFish {
 		//Start GameMaker
 		GameMaker GM = new GameMaker();  //Initialize GameMaker
 		GameFactory gf = new GoFishFactory();   //Initialize a BlackJack Game
-		GM.initGame(gf);   //Start the Game making process
+		//TODO Re-implement GoFish
+		//GM.initGame(gf);   //Start the Game making process
 		GM.startGame();   //Start playing BlackJack
 	}
 

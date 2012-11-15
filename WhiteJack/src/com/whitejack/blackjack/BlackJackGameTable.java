@@ -6,11 +6,11 @@ import com.whitejack.api.Dealer;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
 
-public class BlackJackTable extends GameTable {
+public class BlackJackGameTable extends GameTable {
 	
 	
 
-	public BlackJackTable(Dealer dealer, List<User> users) {
+	public BlackJackGameTable(Dealer dealer, List<User> users) {
 		super(dealer, users);
 	}
 	@Override

@@ -20,7 +20,7 @@ public class BlackJackFactory implements GameFactory {
 	@Override
 	public GameTable createGame(Dealer dealer, List<User> users) {
 		
-		return new BlackJackTable(dealer, users);
+		return new BlackJackGameTable(dealer, users);
 	}
 
 }

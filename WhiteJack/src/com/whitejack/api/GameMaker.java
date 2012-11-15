@@ -1,5 +1,6 @@
 package com.whitejack.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ public class GameMaker {
 	private static Logger log = Logger.getLogger("WhiteJack");
 	
 	protected Game game;
+	protected GameTable gameTable;
 	protected List<User> users;
 	private int numOfPlayers;
 	
@@ -28,17 +30,17 @@ public class GameMaker {
 
 		//Debug line for verification of Starting addPlayer() method
 		this.numOfPlayers = numOfPlayers;
+		this.users = new ArrayList<User>();
+		
 		for(int i=0; i<numOfPlayers; i++) {
 			User user = new User();
 			Scanner input = new Scanner(System.in);
-			System.out.println("Alright, Player "+(i+1)+": What is your name?");
-			user.userName = input.toString();
-			System.out.println("Thank you Player "+(i+1)+ )
-			
+			log.info("Alright, Player "+(i+1)+": What is your name?");
+			user.userName = input.nextLine();
+			log.info("Thank you, "+user.userName+" has been added to the game.");
+			this.users.add(user);
 		}
-		users.add(e)
-		player.isActiveUser = true;
-		log.info("Player '"+player.userName+"' added to game!");
+		System.out.println("All players have been added.");
 
 		//System.out.println("Player: "+ player.userName+ " has been added to the game!");  //Old debug line
 
@@ -68,15 +70,13 @@ public class GameMaker {
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 		
-		List<User> users;
-		
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("How many players will be playing?");
 		numOfPlayers= input.nextInt();
 		addPlayers(numOfPlayers);
 
-		game = gameFactory.createGame(dealer, user);
+		gameTable = gameFactory.createGame(dealer, this.users);
 
 		
 		//Created switch statement for possibility to make other card games ;)

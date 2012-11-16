@@ -20,39 +20,27 @@ import org.apache.log4j.Logger;
 
 public class BlackJack extends Game {
 	
-	public Dealer dealer;
-	public Deck deck;
-	public User user;
-	public boolean stand,bust;
+	protected boolean stand,bust;
 	
 	private static final Logger log = Logger.getLogger("WhiteJack");
 	
-	public BlackJack(Dealer dealer, Deck deck, User user) {
-		this.dealer = dealer;
-		this.deck = deck;
-		this.user = user;
+	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
+	
+	public BlackJack() {
+		
 	}
 
 
+	/**
+	 * @deprecated 
+	 * This would play a single player game of BlackJack with one
+	 * user and one dealer. No further development on this 
+	 * method should take place.
+	 */
 	@Override
 	public void start() {
 
 		Scanner input = new Scanner(System.in);
-
-		//Requests the amount of players to be added to the game
-		//TODO: Implement multiplayer functionality
-
-		//Request a bet amount
-		System.out.print("How much would you like to bet? ");
-
-		while(!input.hasNextInt()) {
-			log.debug("[BlackJack]: User has entered something else other than an Integer!");
-			System.out.println("Please enter a number!");
-			input.nextLine();
-		}
-		user.bet=input.nextInt();
-		log.debug("[BlackJack]: User has set their bet to "+user.bet);
-
 		//Deal Cards
 
 		if(deck.isShuffled != true) {
@@ -141,12 +129,11 @@ public class BlackJack extends Game {
 	
 	/**
 	 * Universal hit method to which we can now use as all actors on the
-	 * game are of type Player. Generics are usefull man :)
+	 * game are of type Player. 
 	 * @param player
 	 */
 	private void hit(Player player) {
-		
-		player.recieveCard(deck);
+		player.recieveCard(super.deck);
 		log.info(player.userName+" has drawn a " +player.getCard());
 		log.info(player.userName+"'s hand has a value of: "+player.getHandValue());
 		

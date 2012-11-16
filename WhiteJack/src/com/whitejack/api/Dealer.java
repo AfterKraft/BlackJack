@@ -4,12 +4,16 @@ public class Dealer extends Player {
 	
 	public boolean isPlayable = false;
 	public String userName= "Dealer";
-	protected int handValue;
-	public boolean isActiveUser = false;
-	protected int balance;
 	public final String playerName="Dealer";
+	public boolean isActiveUser = false;
+	
+	protected int handValue;
+	protected int balance;
+
 	
 	public Dealer() {
+		super.userName = userName;
+		
 		
 	}
 	

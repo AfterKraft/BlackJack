@@ -1,15 +1,26 @@
 package com.whitejack.api;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * A setup class to create games, determining amount of players etc.
+ * 
+ * @author gabizou
+ *
+ */
 public class GameMaker {
 	
 	private static Logger log = Logger.getLogger("WhiteJack");
 	
 	protected Game game;
+	protected GameTable gameTable;
+	protected List<User> users;
+	private int numOfPlayers;
 	
 	public GameMaker() {
 		log.info("GameMaker Started!");
@@ -20,75 +31,67 @@ public class GameMaker {
 	 * system checks. 
 	 * @param player
 	 */
-	public void addPlayer(Player player) {
+	public void addPlayers(int numOfPlayers) {
 
 		//Debug line for verification of Starting addPlayer() method
-		player.isActiveUser = true;
-		log.info("Player '"+player.userName+"' added to game!");
+		this.numOfPlayers = numOfPlayers;
+		this.users = new ArrayList<User>();
+		
+		for(int i=0; i<numOfPlayers; i++) {
+			User user = new User();
+			Scanner input = new Scanner(System.in);
+			log.info("Alright, Player "+(i+1)+": What is your name?");
+			user.userName = input.nextLine();
+			user.playerName = user.userName;
+			log.info("Thank you, "+user.userName+" has been added to the game.");
+			this.users.add(user);
+			int temp = users.indexOf(user);
+			log.debug("Yo, this user "+user.userName+" has an index of: "+temp);
+		}
+		System.out.println("All players have been added.");
 
 		//System.out.println("Player: "+ player.userName+ " has been added to the game!");  //Old debug line
 
 	}
 
-	/**
-	 * API comment: Removes a player of type Player from the Game. GameMaker 
-	 * sets the Player to be un-playable unless the player object is playable
-	 * set by the addPlayer method.
-	 * @param player
-	 */
 
-	public void removePlayer(Player player) {
-		//Sets the boolean states to false for any system checks
-		player.isPlayable = false;
-		player.isActiveUser = false;
-
-	}
 
 	/**
-	 * Initializes a game of WhiteJack.
+	 * Creates a GameFactory to create the 
+	 * gameType specific Game and GameTable
 	 * 
-	 * Future: Could be used to initialize different types of card games.
+	 * Game = Game logic used by GameTable
+	 * GameTable = container for the <User> list and executes Game methods
 	 */
-	public void initGame(GameFactory gameFactory) {
+	public void setupGame(GameFactory gameFactory) {
 
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
-		Deck deck = new Deck();
-		deck.shuffle();
-		deck.isShuffled = true;
 		
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Please enter your name: ");
-		String userName = input.nextLine();
-		User user = new User(userName, userName);
-		user.isPlayable = true;
-		user.isActiveUser = true;
-		log.debug("User '"+ userName+ "' has been set up as Playable");
-
-		System.out.println("Thank you "+ userName +", Welcome to WhiteJack.");
-
-		game = gameFactory.createGame(dealer, deck, user);
-
-		
-		//Created switch statement for possibility to make other card games ;)
-		
-		/*
-		switch(game) {
-		case 1: BlackJack blackjack = new BlackJack(dealer, deck, user);
-				blackjack.start(); break;
-		default: BlackJack blackjack1 = new BlackJack(dealer, deck, user);
-		blackjack1.start(); break;
+		System.out.println("How many players will be playing?");
+		while(!input.hasNextInt()) {
+			System.out.println("Please enter a number!");
+			input.nextLine();
 		}
-		*/
+		numOfPlayers= input.nextInt();
+		addPlayers(numOfPlayers);
+
+		gameTable = gameFactory.createTable(dealer, this.users);
+		if(!gameTable.isSetUp) {
+			gameTable.setupTable();
+		} else startGame();
+		
 	}
 
+	//TODO write ability to save games to file
 	public void saveGame() {
 
 	}
-
-	public void resumeGame() {
-
+	//TODO write ability to load games from file
+	public void loadGame() {
+		
 	}
 
 	public void getCard() {
@@ -104,7 +107,9 @@ public class GameMaker {
 
 	public void startGame() {
 		// TODO Auto-generated method stub
-		game.start();
+		gameTable.startGame();
+		
+		gameTable = null;
 		
 	}
 

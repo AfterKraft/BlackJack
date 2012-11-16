@@ -42,8 +42,11 @@ public class GameMaker {
 			Scanner input = new Scanner(System.in);
 			log.info("Alright, Player "+(i+1)+": What is your name?");
 			user.userName = input.nextLine();
+			user.playerName = user.userName;
 			log.info("Thank you, "+user.userName+" has been added to the game.");
 			this.users.add(user);
+			int temp = users.indexOf(user);
+			log.debug("Yo, this user "+user.userName+" has an index of: "+temp);
 		}
 		System.out.println("All players have been added.");
 
@@ -51,19 +54,7 @@ public class GameMaker {
 
 	}
 
-	/**
-	 * API comment: Removes a player of type Player from the Game. GameMaker 
-	 * sets the Player to be unplayable unless the player object is playable
-	 * set by the addPlayer method.
-	 * @param player
-	 */
 
-	public void removePlayer(Player player) {
-		//Sets the boolean states to false for any system checks
-		player.isPlayable = false;
-		player.isActiveUser = false;
-
-	}
 
 	/**
 	 * Creates a GameFactory to create the 
@@ -90,7 +81,7 @@ public class GameMaker {
 		gameTable = gameFactory.createTable(dealer, this.users);
 		if(!gameTable.isSetUp) {
 			gameTable.setupTable();
-		} else this.startGame();
+		} else startGame();
 		
 	}
 
@@ -117,6 +108,8 @@ public class GameMaker {
 	public void startGame() {
 		// TODO Auto-generated method stub
 		gameTable.startGame();
+		
+		gameTable = null;
 		
 	}
 

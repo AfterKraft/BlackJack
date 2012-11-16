@@ -3,13 +3,15 @@ package com.whitejack.blackjack;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import com.whitejack.api.Dealer;
-import com.whitejack.api.Game;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
 
 public class BlackJackGameTable extends GameTable {
 
+	private static final Logger log = Logger.getLogger("WhiteJack");
 	/**
 	 * Creates a container for the User and dealer
 	 * 
@@ -42,6 +44,31 @@ public class BlackJackGameTable extends GameTable {
 		}
 		super.game = new BlackJack();
 		super.isSetUp = true;
+	}
+	/**
+	 * Removes the User with userName matching from the GameTable
+	 * 
+	 * This can be called if a player can NOT play (isPlayable=false)
+	 * @param user
+	 */
+
+	public void removePlayer(User user) {
+		//Sets the boolean states to false for any system checks
+		//User temp = new User(User user);
+		log.debug("User name to remove is: "+user.userName);
+		int index= -1;
+		for(int i=0; i<super.users.size(); i++) {
+			User temp1 = super.users.get(i);
+			log.debug("Temp1;s username is: "+temp1.userName);
+			log.debug("Temp's name is :"+user.userName);
+			if (temp1.userName.equals(user.userName)) {
+				index = super.users.indexOf(temp1);
+			} else {
+			}
+		}
+		log.debug("the index to be removed is: "+index);
+		super.users.remove(index);
+		log.debug("[BlackJackGameTable] The requested user has been removed from the GameTable User list");
 	}
 	
 	/**

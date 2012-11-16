@@ -31,6 +31,12 @@ public class BlackJack extends Game {
 	}
 
 
+	/**
+	 * @deprecated 
+	 * This would play a single player game of BlackJack with one
+	 * user and one dealer. No further development on this 
+	 * method should take place.
+	 */
 	@Override
 	public void start() {
 
@@ -123,7 +129,7 @@ public class BlackJack extends Game {
 	
 	/**
 	 * Universal hit method to which we can now use as all actors on the
-	 * game are of type Player. Generics are usefull man :)
+	 * game are of type Player. 
 	 * @param player
 	 */
 	private void hit(Player player) {

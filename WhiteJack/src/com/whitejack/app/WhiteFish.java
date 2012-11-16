@@ -2,9 +2,7 @@ package com.whitejack.app;
 
 import org.apache.log4j.Logger;
 
-import com.whitejack.api.GameFactory;
 import com.whitejack.api.GameMaker;
-import com.whitejack.gofish.GoFishFactory;
 
 public class WhiteFish {
 	
@@ -21,7 +19,7 @@ public class WhiteFish {
 		
 		//Start GameMaker
 		GameMaker GM = new GameMaker();  //Initialize GameMaker
-		GameFactory gf = new GoFishFactory();   //Initialize a BlackJack Game
+		//GameFactory gf = new GoFishFactory();   //Initialize a BlackJack Game
 		//TODO Re-implement GoFish
 		//GM.initGame(gf);   //Start the Game making process
 		GM.startGame();   //Start playing BlackJack

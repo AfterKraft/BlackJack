@@ -7,7 +7,12 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-
+/**
+ * A setup class to create games, determining amount of players etc.
+ * 
+ * @author gabizou
+ *
+ */
 public class GameMaker {
 	
 	private static Logger log = Logger.getLogger("WhiteJack");
@@ -61,9 +66,11 @@ public class GameMaker {
 	}
 
 	/**
-	 * Initializes a game of WhiteJack.
+	 * Creates a GameFactory to create the 
+	 * gameType specific Game and GameTable
 	 * 
-	 * Future: Could be used to initialize different types of card games.
+	 * Game = Game logic used by GameTable
+	 * GameTable = container for the <User> list and executes Game methods
 	 */
 	public void setupGame(GameFactory gameFactory) {
 
@@ -73,30 +80,28 @@ public class GameMaker {
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("How many players will be playing?");
+		while(!input.hasNextInt()) {
+			System.out.println("Please enter a number!");
+			input.nextLine();
+		}
 		numOfPlayers= input.nextInt();
 		addPlayers(numOfPlayers);
 
-		gameTable = gameFactory.createGame(dealer, this.users);
-
-		
-		//Created switch statement for possibility to make other card games ;)
-		
-		/*
-		switch(game) {
-		case 1: BlackJack blackjack = new BlackJack(dealer, deck, user);
-				blackjack.start(); break;
-		default: BlackJack blackjack1 = new BlackJack(dealer, deck, user);
-		blackjack1.start(); break;
+		gameTable = gameFactory.createTable(dealer, this.users);
+		game = gameFactory.createGame();
+		if(!gameTable.isSetUp) {
+			gameTable.setupTable();
 		}
-		*/
+		
 	}
 
+	//TODO write ability to save games to file
 	public void saveGame() {
 
 	}
-
-	public void resumeGame() {
-
+	//TODO write ability to load games from file
+	public void loadGame() {
+		
 	}
 
 	public void getCard() {

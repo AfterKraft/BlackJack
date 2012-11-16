@@ -20,18 +20,17 @@ import org.apache.log4j.Logger;
 
 public class BlackJack extends Game {
 	
-	public Dealer dealer;
-	public Deck deck;
-	public User user;
-	public boolean stand,bust;
+	protected Dealer dealer;
+	protected Deck deck;
+	protected User user;
+	protected boolean stand,bust;
 	
 	private static final Logger log = Logger.getLogger("WhiteJack");
 	
 	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
 	
-	public BlackJack(Dealer dealer, User user) {
-		this.dealer = dealer;
-		this.user = user;
+	public BlackJack() {
+		
 	}
 
 
@@ -39,21 +38,6 @@ public class BlackJack extends Game {
 	public void start() {
 
 		Scanner input = new Scanner(System.in);
-
-		//Requests the amount of players to be added to the game
-		//TODO: Implement multiplayer functionality
-
-		//Request a bet amount
-		System.out.print("How much would you like to bet? ");
-
-		while(!input.hasNextInt()) {
-			log.debug("[BlackJack]: User has entered something else other than an Integer!");
-			System.out.println("Please enter a number!");
-			input.nextLine();
-		}
-		user.bet=input.nextInt();
-		log.debug("[BlackJack]: User has set their bet to "+user.bet);
-
 		//Deal Cards
 
 		if(deck.isShuffled != true) {

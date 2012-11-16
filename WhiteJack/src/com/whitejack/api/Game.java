@@ -11,6 +11,10 @@ package com.whitejack.api;
  */
 public abstract class Game {
 	
+	protected Dealer dealer;
+	protected Deck deck;
+	protected User user;
+	
 	public void start() {
 		
 	}

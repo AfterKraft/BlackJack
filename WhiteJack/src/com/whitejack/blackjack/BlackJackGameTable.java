@@ -4,12 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.whitejack.api.Dealer;
+import com.whitejack.api.Game;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
 
 public class BlackJackGameTable extends GameTable {
-
-
 
 	/**
 	 * Creates a container for the User and dealer
@@ -41,7 +40,19 @@ public class BlackJackGameTable extends GameTable {
 			} while(betAmmount>user.balance);
 			user.bet(betAmmount);
 		}
+		super.game = new BlackJack();
 		super.isSetUp = true;
+	}
+	
+	/**
+	 * Starts the first round and continues playing until the boolean endGame becomes true
+	 * 
+	 */
+	@Override
+	protected void startGame() {
+		
+		
+		
 	}
 
 	/**
@@ -95,6 +106,8 @@ public class BlackJackGameTable extends GameTable {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 
 

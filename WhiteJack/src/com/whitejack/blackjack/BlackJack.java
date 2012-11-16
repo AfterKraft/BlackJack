@@ -20,9 +20,6 @@ import org.apache.log4j.Logger;
 
 public class BlackJack extends Game {
 	
-	protected Dealer dealer;
-	protected Deck deck;
-	protected User user;
 	protected boolean stand,bust;
 	
 	private static final Logger log = Logger.getLogger("WhiteJack");
@@ -130,8 +127,7 @@ public class BlackJack extends Game {
 	 * @param player
 	 */
 	private void hit(Player player) {
-		
-		player.recieveCard(deck);
+		player.recieveCard(super.deck);
 		log.info(player.userName+" has drawn a " +player.getCard());
 		log.info(player.userName+"'s hand has a value of: "+player.getHandValue());
 		

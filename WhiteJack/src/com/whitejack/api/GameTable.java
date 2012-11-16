@@ -17,6 +17,7 @@ public abstract class GameTable {
 	protected List<User> users;
 	protected Dealer dealer;
 	protected boolean isSetUp;
+	protected Game game;
 	
 	protected GameTable(Dealer dealer, List<User> users) {
 		this.users = users;
@@ -56,4 +57,6 @@ public abstract class GameTable {
 	abstract protected boolean play(User user);
 	
 	abstract protected void gameOver();
+
+	abstract protected void startGame();
 }

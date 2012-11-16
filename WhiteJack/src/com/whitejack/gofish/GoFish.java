@@ -5,16 +5,13 @@ import java.util.Scanner;
 
 public class GoFish extends Game {
 
-	public Dealer dealer;
-	public Deck deck;
-	public User user;
 	public boolean stand,bust;
 	public boolean GameOver;
 
 	public GoFish(Dealer dealer, Deck deck, User user) {
-		this.dealer = dealer;
-		this.deck = deck;
-		this.user = user;
+		super.dealer = dealer;
+		super.deck = deck;
+		super.user = user;
 	}
 
 	public void start() {

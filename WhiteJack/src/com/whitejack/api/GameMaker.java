@@ -53,7 +53,7 @@ public class GameMaker {
 
 	/**
 	 * API comment: Removes a player of type Player from the Game. GameMaker 
-	 * sets the Player to be un-playable unless the player object is playable
+	 * sets the Player to be unplayable unless the player object is playable
 	 * set by the addPlayer method.
 	 * @param player
 	 */
@@ -88,10 +88,9 @@ public class GameMaker {
 		addPlayers(numOfPlayers);
 
 		gameTable = gameFactory.createTable(dealer, this.users);
-		game = gameFactory.createGame();
 		if(!gameTable.isSetUp) {
 			gameTable.setupTable();
-		}
+		} else this.startGame();
 		
 	}
 
@@ -117,7 +116,7 @@ public class GameMaker {
 
 	public void startGame() {
 		// TODO Auto-generated method stub
-		game.start();
+		gameTable.startGame();
 		
 	}
 

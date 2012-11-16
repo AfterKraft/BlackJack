@@ -13,23 +13,31 @@ package com.whitejack.api;
 
 import org.apache.log4j.Logger;
 
+/**
+ * A Player is the generic object of which Users and Dealers are
+ * created from. 
+ * @author gabizou
+ *
+ */
 public abstract class Player {
 	
 	private static Logger log = Logger.getLogger("WhiteJack");
 	
-	//Set default variables
+	//Set default atributes
 	public String userName;
-	protected int[] Hand;
 	public boolean isActiveUser = false;
-	protected int balance;
-	private int handValue;
-	public boolean isPlayable;
-	private boolean ace;
 	public Card card[];
-	
-	//Set up logger
-
+	public boolean isPlayable;
 	public int cardCount=0;
+	public int balance;
+	
+	protected int[] Hand;
+
+
+	private int handValue;
+	private boolean ace;
+
+
 	
 	public Player() {
 		

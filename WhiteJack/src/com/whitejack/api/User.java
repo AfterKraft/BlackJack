@@ -12,17 +12,16 @@ public class User extends Player {
 	public String playerName;
 	public String dateCreated;
 	public int bet;
-	public int balance;
 	private static Logger log = Logger.getLogger("WhiteJack");
 	
 	/** 
-	 * User constrcutor creates a default user of default balance and generic
+	 * User constructor creates a default user of default balance and generic
 	 * username and stores the dateCreated as a string for storage purposes
 	 */
 	public User() {
 		
 		log.warn("[User] Making a Default User!");  //Debugging Line
-		balance = 300;
+		super.balance = 300;
 		playerName = "DefaultUser";
 		userName = playerName;
 		isPlayable = true;
@@ -32,19 +31,25 @@ public class User extends Player {
 		
 	}
 	
+	/**
+	 * Creates a customized User 
+	 * @param playerName
+	 * @param userName
+	 */
 	public User(String playerName, String userName) {
 		this.playerName = playerName;
 		this.userName = userName;
 		Time time = new Time();
 		dateCreated = time.getCurrentTime();
 		isPlayable = true;
-		balance = 300;
+		super.balance = 300;
+		//TODO try to save User's in a file list of sorts.
 		log.info("[User] User "+playerName+" has been created!");  //Debugging Line
 	}
 	
 	public void bet(int amount) {
-		balance -= amount;
-		log.debug("[User] The user: "+playerName+"'s balance has be deducted by "+ amount);  //Debugging Line
+		super.balance -= amount;
+		log.debug("[User] The user: "+userName+"'s balance has be deducted by "+ amount);  //Debugging Line
 	}
 	
 	public int getCurrentBalance() {

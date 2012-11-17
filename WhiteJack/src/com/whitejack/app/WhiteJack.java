@@ -37,17 +37,17 @@ public class WhiteJack {
 		log.info("\n");
 		
 		//Start GameMaker
-//		GameMaker GM = new GameMaker();  //Initialize GameMaker
-//		log.info("\nSuccessfully launched GameMaker");
-//		GameFactory gf = new BlackJackFactory();   //Initialize a BlackJack Game
-//		log.info("\nSuccessfully initialized BlackJackFactory!");
-//		GM.setupGame(gf);   //Start the Game making process
-//		log.info("\nSuccessfully called setUpGame() method");
-//		GM.startGame();   //Start playing BlackJack
-//		log.info("\nGame begins...1Now about to open gui");
-//		GUIManager gui = new GUIManager();
-//		log.info("\ngui opened");
-//		gui.startGUI();
+		GameMaker GM = new GameMaker();  //Initialize GameMaker
+		log.info("\nSuccessfully launched GameMaker");
+		GameFactory gf = new BlackJackFactory();   //Initialize a BlackJack Game
+		log.info("\nSuccessfully initialized BlackJackFactory!");
+		GM.setupGame(gf);   //Start the Game making process
+		log.info("\nSuccessfully called setUpGame() method");
+		GM.startGame();   //Start playing BlackJack
+		log.info("\nGame begins...1Now about to open gui");
+		GUIManager gui = new GUIManager();
+		log.info("\ngui opened");
+		gui.startGUI();
 	}
 
 }

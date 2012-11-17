@@ -26,6 +26,7 @@ public class BlackJackGameTable extends GameTable {
 	 * Sets up the GameTable taking user bets for all players in 
 	 * playable <User> list.
 	 */
+	@Override
 	public void setupTable() {
 		for(User user : users) {
 			Scanner bet = new Scanner(System.in);
@@ -43,7 +44,7 @@ public class BlackJackGameTable extends GameTable {
 			user.bet(betAmmount);
 			bet.close();
 		}
-		super.game = new BlackJack();
+		super.game = new BlackJackGame();
 		super.isSetUp = true;
 	}
 	/**
@@ -53,6 +54,7 @@ public class BlackJackGameTable extends GameTable {
 	 * @param user
 	 */
 
+	@Override
 	public void removePlayer(User user) {
 		//Sets the boolean states to false for any system checks
 		//User temp = new User(User user);
@@ -78,6 +80,9 @@ public class BlackJackGameTable extends GameTable {
 	 */
 	@Override
 	protected void startGame() {
+		super.game = new BlackJackGame();
+		
+		game.play();
 
 
 

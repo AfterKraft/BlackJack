@@ -25,6 +25,6 @@ public class BlackJackFactory implements GameFactory {
 	@Override
 	public Game createGame() {
 		// TODO Auto-generated method stub
-		return new BlackJack();
+		return new BlackJackGame();
 	}
 }

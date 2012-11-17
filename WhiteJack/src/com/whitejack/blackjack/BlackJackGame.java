@@ -19,7 +19,7 @@ import org.apache.log4j.Logger;
  *
  */
 
-public class BlackJack extends Game {
+public class BlackJackGame extends Game {
 	
 	public Dealer dealer;
 	public Deck deck;
@@ -33,7 +33,7 @@ public class BlackJack extends Game {
 	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
 	
 	
-	public BlackJack() {
+	public BlackJackGame() {
 	}
 
 

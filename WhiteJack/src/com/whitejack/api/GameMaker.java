@@ -21,6 +21,7 @@ public class GameMaker {
 	protected GameTable gameTable;
 	protected List<User> users;
 	private int numOfPlayers;
+	private Scanner input = new Scanner(System.in);
 
 	public GameMaker() {
 		log.info("GameMaker Started!");
@@ -39,7 +40,7 @@ public class GameMaker {
 
 		for(int i=0; i<numOfPlayers; i++) {
 			User user = new User();
-			Scanner input = new Scanner(System.in);
+
 			log.info("Alright, Player "+(i+1)+": What is your name?");
 			user.userName = input.nextLine();
 			user.playerName = user.userName;
@@ -68,8 +69,6 @@ public class GameMaker {
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 
-		Scanner input = new Scanner(System.in);
-
 		System.out.println("How many players will be playing?");
 		while(!input.hasNextInt()) {
 			System.out.println("Please enter a number!");
@@ -81,7 +80,9 @@ public class GameMaker {
 		gameTable = gameFactory.createTable(dealer, this.users);
 		if(!gameTable.isSetUp) {
 			gameTable.setupTable();
-		} else startGame();
+		} else {
+			startGame();
+		}
 
 	}
 
@@ -107,7 +108,7 @@ public class GameMaker {
 
 	public void startGame() {
 		// TODO Auto-generated method stub
-//		gameTable.startGame();
+		gameTable.startGame();
 
 //		gameTable = null;
 

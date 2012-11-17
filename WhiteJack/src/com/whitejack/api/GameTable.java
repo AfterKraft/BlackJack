@@ -31,6 +31,8 @@ public abstract class GameTable {
 	abstract protected void shuffle();
 
 	abstract protected void initialize();
+	
+	abstract protected void removePlayer(User user);
 
 	public void playGame() {
 		initialize();

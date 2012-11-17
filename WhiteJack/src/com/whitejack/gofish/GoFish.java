@@ -22,7 +22,7 @@ public class GoFish extends Game {
 		Scanner input = new Scanner(System.in);
 
 		if(deck.isShuffled != true) {
-			deck.shuffle();
+			//deck.shuffle();
 		}
 
 		dealer.recieveCard(deck);

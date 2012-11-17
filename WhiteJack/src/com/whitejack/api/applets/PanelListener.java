@@ -9,7 +9,6 @@ public class PanelListener implements ActionListener
 		public void actionPerformed(ActionEvent e)
 		{
 			//System.out.println("HIT!");
-			
 			//System.out.println("STAND!");
 			//System.out.println("DOUBLE DOWN!");
 			//System.out.println("SPLIT!");

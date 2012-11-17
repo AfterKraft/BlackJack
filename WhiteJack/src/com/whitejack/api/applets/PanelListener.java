@@ -8,6 +8,8 @@ public class PanelListener implements ActionListener
 		// TODO Auto-generated constructor stub
 		public void actionPerformed(ActionEvent e)
 		{
+		
+			
 			//System.out.println("HIT!");
 			//System.out.println("STAND!");
 			//System.out.println("DOUBLE DOWN!");

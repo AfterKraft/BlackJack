@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import com.whitejack.api.Dealer;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
+import com.whitejack.api.applets.BetHandler;
 
 public class BlackJackGameTable extends GameTable {
 
@@ -30,6 +31,8 @@ public class BlackJackGameTable extends GameTable {
 	public void setupTable() {
 		for(User user : users) {
 			Scanner bet = new Scanner(System.in);
+	//		BetHandler b = BetHandler.getBetHandler();
+			log.debug("[BlackJackGameTable] inside setupTable() method");
 			System.out.print(user.userName+", how much would you like to bet?");
 			while(!bet.hasNextInt()) {
 				System.out.println("Please enter a number!");

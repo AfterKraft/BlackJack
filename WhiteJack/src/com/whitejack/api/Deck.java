@@ -38,7 +38,7 @@ public class Deck extends Card{
 	}
 
 
-	public void shuffle() {
+/*	public void shuffle() {
 		
 		log.debug("[Deck]: Deck will be shuffled.");  //Debugging Line
 		i=0;
@@ -56,7 +56,7 @@ public class Deck extends Card{
 		
 		isShuffled=true;
 		count=0;
-	}
+	}*/
 
 	public Card dealCard() {
 		

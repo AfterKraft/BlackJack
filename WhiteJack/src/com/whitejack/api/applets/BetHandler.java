@@ -1,4 +1,3 @@
-package com.whitejack.api.applets;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -15,13 +14,14 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import com.whitejack.gui.WhiteJackFrame;
 
-public class BetHandler extends JApplet implements ActionListener
+package com.whitejack.api.applets;
+
+public class BetHandler extends JApplet 
 {
 	private MyPanel p;
 	private JFrame frame;
-	private PanelListener handler;
+//	private PanelListener handler;
 	private JTextField t1 = new JTextField();
 	
 	public BetHandler()
@@ -31,6 +31,14 @@ public class BetHandler extends JApplet implements ActionListener
 		frame.setSize(1095,135);
 		frame.add(this);
 		p = new MyPanel();
+//		p.addActionListener(new ActionListener()
+//		{
+//			public void actionPerformed(ActionEvent e) 
+//			{
+//				System.out.println("You just bet ");
+//			}
+//		});
+	
 		setBackground(Color.YELLOW);
 		this.add(p, BorderLayout.CENTER);
 		this.add(t1, BorderLayout.SOUTH);
@@ -77,9 +85,5 @@ public class BetHandler extends JApplet implements ActionListener
 	//			System.out.println("You just bet ");
 	//		}		
 //	}
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("You just bet ");
-	}
+
 }

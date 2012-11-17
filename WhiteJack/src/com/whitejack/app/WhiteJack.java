@@ -24,12 +24,7 @@ public class WhiteJack {
 		// the following lines of code are for TESTING only OTHERWISE
 		//THEY SHOULD BE COMMENTED OUT************************
 		//DeckArrayManager d = DeckArrayManager.getDeckArrayManager();
-		DeckArrayManager d = DeckArrayManager.getDeckArrayManager();
-		System.out.println("hi");
-		d.initDeck();
-		d.shuffle();
-		d.displayHand(2); 
-		BetHandler bet = BetHandler.getBetHandler();
+
 		//END OF TESTING CODE***************
 		
 		//Print Activation messages for debugging
@@ -44,7 +39,6 @@ public class WhiteJack {
 		GM.setupGame(gf);   //Start the Game making process
 		log.info("\nSuccessfully called setUpGame() method");
 		GM.startGame();   //Start playing BlackJack
-		log.info("\nGame begins...1Now about to open gui");
 		GUIManager gui = new GUIManager();
 		log.info("\ngui opened");
 		gui.startGUI();

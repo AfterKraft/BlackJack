@@ -2,26 +2,36 @@ package com.whitejack.api;
 
 import java.util.List;
 
+/**
+ * A table to contain players, uses Game as needed for game specific methods/steps
+ * 
+ * @author gabizou
+ *
+ */
 public abstract class GameTable {
 
 	public Object Background;
 	public Object TableLayout;
-	
+
 	protected Deck deck;
 	protected List<User> users;
 	protected Dealer dealer;
-	
+	protected boolean isSetUp;
+	protected Game game;
+
 	protected GameTable(Dealer dealer, List<User> users) {
 		this.users = users;
 		this.dealer = dealer;
 	}
-	
+
+	abstract protected void setupTable();
+
 	abstract protected void getCard();
-	
+
 	abstract protected void shuffle();
-	
+
 	abstract protected void initialize();
-	
+
 	public void playGame() {
 		initialize();
 		shuffle();
@@ -45,6 +55,8 @@ public abstract class GameTable {
 	 * @return true if we are to continue the game; false if the player requested quitting the game.
 	 */
 	abstract protected boolean play(User user);
-	
+
 	abstract protected void gameOver();
+
+	abstract protected void startGame();
 }

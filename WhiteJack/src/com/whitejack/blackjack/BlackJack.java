@@ -7,6 +7,7 @@ import com.whitejack.api.Deck;
 import com.whitejack.api.Game;
 import com.whitejack.api.Player;
 import com.whitejack.api.User;
+import com.whitejack.api.applets.BetHandler;
 
 import org.apache.log4j.Logger;
 
@@ -24,10 +25,13 @@ public class BlackJack extends Game {
 	public Deck deck;
 	public User user;
 	public boolean stand,bust;
+	public Scanner input;
+	public BetHandler betHandler;
 	
 	private static final Logger log = Logger.getLogger("WhiteJack");
 	
 	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
+	
 	
 	public BlackJack(Dealer dealer, User user) {
 		this.dealer = dealer;
@@ -38,13 +42,12 @@ public class BlackJack extends Game {
 	@Override
 	public void start() {
 
-		Scanner input = new Scanner(System.in);
-
 		//Requests the amount of players to be added to the game
 		//TODO: Implement multiplayer functionality
-
+		input = new Scanner(System.in);
 		//Request a bet amount
 		System.out.print("How much would you like to bet? ");
+		betHandler = new BetHandler(); 
 
 		while(!input.hasNextInt()) {
 			log.debug("[BlackJack]: User has entered something else other than an Integer!");

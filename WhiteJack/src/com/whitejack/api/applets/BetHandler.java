@@ -14,6 +14,10 @@ import javax.swing.JTextField;
 
 public class BetHandler extends JApplet 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private MyPanel p;
 	private JFrame frame;
 //	private PanelListener handler;
@@ -52,6 +56,10 @@ public class BetHandler extends JApplet
 	public class MyPanel extends JPanel 
 	{
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private URL path = BetHandler.class.getResource("/com/whitejack/images/GameTable/WoodUp.gif"); // MAKE SURE TO CHANGE THIS BACK TO THE REAL PATH
 		public MyPanel()
 		{

@@ -41,6 +41,7 @@ public class BlackJackGameTable extends GameTable {
 				betAmmount= bet.nextInt();
 			} while(betAmmount>user.balance);
 			user.bet(betAmmount);
+			bet.close();
 		}
 		super.game = new BlackJack();
 		super.isSetUp = true;

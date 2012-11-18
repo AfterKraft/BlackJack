@@ -21,24 +21,20 @@ public class WhiteJack {
 		
 		BasicConfigurator.configure();
 		
-		// the following lines of code are for TESTING only OTHERWISE
-		//THEY SHOULD BE COMMENTED OUT************************
-		//DeckArrayManager d = DeckArrayManager.getDeckArrayManager();
-
-		//END OF TESTING CODE***************
-		
-		//Print Activation messages for debugging
 		log.info("====================\n"+"Welcome to WhiteJack\n");
 		log.info("\n");
 		
 		//Start GameMaker
 		GameMaker GM = new GameMaker();  //Initialize GameMaker
 		log.info("\nSuccessfully launched GameMaker");
+		
 		GameFactory gf = new BlackJackFactory();   //Initialize a BlackJack Game
 		log.info("\nSuccessfully initialized BlackJackFactory!");
+		
 		GM.setupGame(gf);   //Start the Game making process
 		log.info("\nSuccessfully called setUpGame() method");
 		GM.startGame();   //Start playing BlackJack
+		
 		GUIManager gui = new GUIManager();
 		log.info("\ngui opened");
 		gui.startGUI();

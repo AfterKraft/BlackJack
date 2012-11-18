@@ -37,7 +37,6 @@ public class BlackJackGame extends Game
 	
 	public BlackJackGame() 
 	{
-		deck = new DeckArrayManager();
 	}
 
 

@@ -12,7 +12,6 @@ public abstract class GameTable {
 
 	public Object Background;
 	public Object TableLayout;
-
 	protected Deck deck;
 	protected List<User> users;
 	protected Dealer dealer;

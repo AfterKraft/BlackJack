@@ -31,7 +31,7 @@ public class BlackJackGameTable extends GameTable {
 	public void setupTable() {
 		for(User user : users) {
 			Scanner bet = new Scanner(System.in);
-	//		BetHandler b = BetHandler.getBetHandler();
+			BetHandler b = BetHandler.getBetHandler();
 			log.debug("[BlackJackGameTable] inside setupTable() method");
 			System.out.print(user.userName+", how much would you like to bet?");
 			while(!bet.hasNextInt()) {

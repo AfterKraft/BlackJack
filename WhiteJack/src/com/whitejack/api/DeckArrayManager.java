@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 public class DeckArrayManager extends Deck
 {
+	private int numDecks = 1;
+	private int numCards = 52;
 	private static DeckArrayManager instance;
 	private boolean cardIsPlayable = true;
 	private Card[] card;
@@ -25,6 +27,13 @@ public class DeckArrayManager extends Deck
      *  deck = DeckArrayManager.getDeckArrayManager();
      * @return
      */
+    public DeckArrayManager()
+    
+    }
+    public DeckArrayManager(int num)
+    {
+    	this.numCards = num;
+    }
     public int getCount()
     {
     	return count;
@@ -56,6 +65,7 @@ public class DeckArrayManager extends Deck
     	else
     		shuffle();
     	
+    	
     }
     
     // Recycle all cards into stack
@@ -77,11 +87,11 @@ public class DeckArrayManager extends Deck
 	    }
 	    System.out.println("[DeckArrayManager] shuffle() method");
     }
-    public void push(ArrayList<Card> list, Card card)
+    public void push(ArrayList<Card> list, int card)
     {
-    	list.add(card);
+    	list.add(this.card[card]);
     }
-    public void pull(ArrayList<Card> list, Card card)
+    public void pull(ArrayList<Card> list, int card)
     {
     	list.remove(card);
     }
@@ -94,6 +104,8 @@ public class DeckArrayManager extends Deck
 	    	System.out.println("Card number " + deck[i] + ": " 
 	        + rank + " of " + suit);
 	    	count++;
+	    	heap.push(Card[]);
+	    	stack.pull(Card[i]);
 	    	
 	    }
 	    System.out.println("[DeckArrayManager] serveHand() method");

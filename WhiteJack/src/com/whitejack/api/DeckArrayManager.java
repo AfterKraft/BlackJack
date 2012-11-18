@@ -1,19 +1,22 @@
 package com.whitejack.api;
 
+import java.util.ArrayList;
+
 
 
 public class DeckArrayManager extends Deck
 {
 	private static DeckArrayManager instance;
+	private boolean cardIsPlayable = true;
 	private Card[] card;
     private int[] deck = new int[52];
     private String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
     private String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9",
       "10", "Jack", "Queen", "King"};
     private int count = 0;
-    private Card[] stack;
-    private Card[] heap;
-    private Card[] recycleBin;
+    private ArrayList<Card> stack = new ArrayList<Card>();
+    private ArrayList<Card> heap = new ArrayList<Card>();
+    private ArrayList<Card> recycleBin = new ArrayList<Card>();
     
     /**
      *  This method is accessed from 
@@ -52,6 +55,7 @@ public class DeckArrayManager extends Deck
     		count++;
     	else
     		shuffle();
+    	
     }
     
     // Recycle all cards into stack
@@ -73,6 +77,14 @@ public class DeckArrayManager extends Deck
 	    }
 	    System.out.println("[DeckArrayManager] shuffle() method");
     }
+    public void push(ArrayList<Card> list, Card card)
+    {
+    	list.add(card);
+    }
+    public void pull(ArrayList<Card> list, Card card)
+    {
+    	list.remove(card);
+    }
     public void serveHand(int num)
     {	// Deal out one hand to one player
 	    for (int i = count; i < num + count; i++) 
@@ -81,6 +93,8 @@ public class DeckArrayManager extends Deck
 	    	String rank = ranks[deck[i] % 13];
 	    	System.out.println("Card number " + deck[i] + ": " 
 	        + rank + " of " + suit);
+	    	count++;
+	    	
 	    }
 	    System.out.println("[DeckArrayManager] serveHand() method");
 	}	

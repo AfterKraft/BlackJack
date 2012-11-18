@@ -59,7 +59,7 @@ public class BlackJackGame extends Game
 	 * game are of type Player. Generics are usefull man :)
 	 * @param player
 	 */
-	private void hit(Player player) 
+	private void requestCard(Player player) 
 	{
 	
 	}
@@ -72,6 +72,10 @@ public class BlackJackGame extends Game
 	
 	}
 	private void doubleDown(Player player)
+	{
+		
+	}
+	public void run()
 	{
 		
 	}

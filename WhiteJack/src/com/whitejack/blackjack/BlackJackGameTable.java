@@ -44,6 +44,7 @@ public class BlackJackGameTable extends GameTable {
 			user.bet(betAmmount);
 		}
 		super.game = new BlackJackGame();
+		
 		super.isSetUp = true;
 	}
 	/**

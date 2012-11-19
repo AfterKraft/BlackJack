@@ -9,6 +9,7 @@ import com.whitejack.api.applets.BetHandler;
 public class Card {
 
 	private int cardID;
+	private int value;
 	private String suits[], suit;
 	private String ranks[], rank;
 	private URL url;
@@ -22,24 +23,28 @@ public class Card {
     	String suit = suits[i / 13];
     	String rank = ranks[i % 13];
 	}
-	public void setURL()
+	private void setPath(String string)
+	{
+		this.path = string;
+	}
+	private void setURL()
 	{
 		path = "/com/whitejack/images/GameTable/";
 		path += rank + suit;
 		url = BetHandler.class.getResource(path);
 		icon = new ImageIcon(url);
 	}
-	public void getURL()
+	public URL getURL()
 	{
-    	
+    	return url;
 	}
 	public String getSuit()
 	{
 		String suit = suits[cardID / 13];
 		return suit;
 	}
-	public void setSuit()
-	{
+	private void setSuit()
+	{	
 	}
 	public String getRank()
 	{
@@ -61,8 +66,20 @@ public class Card {
 	{
 		this.suit=suit;
 	}
+	public void displayImage(int cardID)
+	{
+		// pull the card image from url and show on a gui
+	}
+	public void hideImage()
+	{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+ 		
+	}
 	public int getValue()
 	{
-		return 0;
+		return value;
+	}
+	private void setValue(int value)
+	{
+		this.value = value;
 	}
 }

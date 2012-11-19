@@ -1,4 +1,4 @@
-package com.whitejack.api.events;
+package com.whitejack.api.event;
 
 import java.awt.event.ActionListener;
 

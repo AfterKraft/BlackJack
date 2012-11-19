@@ -3,10 +3,8 @@ package com.whitejack.app;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
-import com.whitejack.api.DeckArrayManager;
 import com.whitejack.api.GameFactory;
 import com.whitejack.api.GameMaker;
-import com.whitejack.api.applets.BetHandler;
 import com.whitejack.blackjack.BlackJackFactory;
 import com.whitejack.gui.GUIManager;
 

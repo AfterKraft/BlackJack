@@ -1,6 +1,6 @@
-package com.whitejack.api.listener;
+package com.whitejack.api.event.handler;
 
-public interface GameTableListener {
+public interface GameTableEventHandler {
 	
 	public void hiThere();
 	

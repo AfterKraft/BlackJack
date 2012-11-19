@@ -21,7 +21,7 @@ public class GameMaker {
 	protected GameTable gameTable;
 	protected List<User> users;
 	private int numOfPlayers;
-	private Scanner input = new Scanner(System.in);
+//	private Scanner input = new Scanner(System.in);
 
 	public GameMaker() {
 		log.info("GameMaker Started!");
@@ -38,17 +38,22 @@ public class GameMaker {
 		this.numOfPlayers = numOfPlayers;
 		this.users = new ArrayList<User>();
 
+		Scanner input = new Scanner(System.in);
 		for(int i=0; i<numOfPlayers; i++) {
-			User user = new User();
+			User tempUser = new User();
 
-			log.info("Alright, Player "+(i+1)+": What is your name?");
-			user.userName = input.nextLine();
-			user.playerName = user.userName;
-			log.info("Thank you, "+user.userName+" has been added to the game.");
+
+			log.info("Alright, Player "+(i+1)+": What is your name?\n");
+			tempUser.userName = input.nextLine();
+			tempUser.playerName = tempUser.userName;
+			log.info("Thank you, "+tempUser.userName+" has been added to the game.");
+			User user = new User(tempUser.userName, tempUser.playerName);
 			this.users.add(user);
 			int temp = users.indexOf(user);
 			log.debug("Yo, this user "+user.userName+" has an index of: "+temp);
+
 		}
+		input.close();
 		System.out.println("All players have been added.");
 
 		//System.out.println("Player: "+ player.userName+ " has been added to the game!");  //Old debug line
@@ -69,6 +74,7 @@ public class GameMaker {
 		//Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 
+		Scanner input = new Scanner(System.in);
 		System.out.println("How many players will be playing?");
 		while(!input.hasNextInt()) {
 			System.out.println("Please enter a number!");
@@ -80,9 +86,9 @@ public class GameMaker {
 		gameTable = gameFactory.createTable(dealer, this.users);
 		if(!gameTable.isSetUp) {
 			gameTable.setupTable();
-		} else {
-			startGame();
 		}
+		startGame();
+		input.close();
 
 	}
 

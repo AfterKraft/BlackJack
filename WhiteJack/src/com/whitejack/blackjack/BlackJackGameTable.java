@@ -29,23 +29,28 @@ public class BlackJackGameTable extends GameTable {
 	 */
 	@Override
 	public void setupTable() {
+		int a=0;
 		for(User user : users) {
-			Scanner bet = new Scanner(System.in);
-			BetHandler b = BetHandler.getBetHandler();
+			Scanner sac = new Scanner(System.in);
 			log.debug("[BlackJackGameTable] inside setupTable() method");
-			System.out.print(user.userName+", how much would you like to bet?");
-			while(!bet.hasNextInt()) {
-				System.out.println("Please enter a number!");
-				bet.nextLine();
+			log.info(user.userName+", how much would you like to bet?");
+			while(sac.hasNextLine() && !sac.hasNextInt()) {
+				System.out.println("Please enter a number!\n");
+				a = sac.nextInt();
+				log.debug("The value for a is:"+a);
 			}
-			int betAmmount=bet.nextInt();
-			do{
-				System.out.println(user.userName+", you can't bet more than you have!");
-				System.out.println(user.userName+", for reference, you have "+user.balance);
-				betAmmount= bet.nextInt();
-			} while(betAmmount>user.balance);
+			log.debug("The value for a OUTSIDE THE WHILE LOOP is:"+a);
+			int betAmmount=a;
+			if(betAmmount>user.balance) {
+				do{
+					System.out.println(user.userName+", you can't bet more than you have!");
+					System.out.println(user.userName+", for reference, you have "+user.balance);
+					betAmmount= sac.nextInt();
+				} while(betAmmount>user.balance);
+			}
+
 			user.bet(betAmmount);
-			bet.close();
+			sac.close();
 		}
 		super.game = new BlackJackGame();
 		super.isSetUp = true;
@@ -77,15 +82,28 @@ public class BlackJackGameTable extends GameTable {
 		log.debug("[BlackJackGameTable] The requested user has been removed from the GameTable User list");
 	}
 
-	/**
-	 * Starts the first round and continues playing until the boolean endGame becomes true
+	/*
+	 * (non-Javadoc)
+	 * For now we'll have to be downcasting to BlackJackGame. Yes, it's 
+	 * not something we want to be doing, but to do otherwise,
+	 * we'll have to implement Generics
 	 * 
+	 * @see com.whitejack.api.GameTable#startGame()
+	 */
+	/**
+	 * Starts a round of the game. Need to implement the new
+	 * DeckArrayManager
 	 */
 	@Override
 	protected void startGame() {
-		super.game = new BlackJackGame();
-		
+		this.game = new BlackJackGame();
+
 		game.play();
+		for(User user: users) {
+			((BlackJackGame)game).requestCard(user);
+			((BlackJackGame)game).doubleDown(user);
+			((BlackJackGame)game).split(user);
+		}
 
 
 
@@ -142,5 +160,5 @@ public class BlackJackGameTable extends GameTable {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 }

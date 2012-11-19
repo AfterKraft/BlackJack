@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import com.whitejack.api.Dealer;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
-import com.whitejack.api.applets.BetHandler;
 
 public class BlackJackGameTable extends GameTable {
 
@@ -29,28 +28,20 @@ public class BlackJackGameTable extends GameTable {
 	 */
 	@Override
 	public void setupTable() {
-		int a=0;
 		for(User user : users) {
-			Scanner sac = new Scanner(System.in);
-			log.debug("[BlackJackGameTable] inside setupTable() method");
-			log.info(user.userName+", how much would you like to bet?");
-			while(sac.hasNextLine() && !sac.hasNextInt()) {
-				System.out.println("Please enter a number!\n");
-				a = sac.nextInt();
-				log.debug("The value for a is:"+a);
+			Scanner bet = new Scanner(System.in);
+			System.out.print(user.userName+", how much would you like to bet?");
+			while(!bet.hasNextInt()) {
+				System.out.println("Please enter a number!");
+				bet.nextLine();
 			}
-			log.debug("The value for a OUTSIDE THE WHILE LOOP is:"+a);
-			int betAmmount=a;
-			if(betAmmount>user.balance) {
-				do{
-					System.out.println(user.userName+", you can't bet more than you have!");
-					System.out.println(user.userName+", for reference, you have "+user.balance);
-					betAmmount= sac.nextInt();
-				} while(betAmmount>user.balance);
+			int betAmmount=bet.nextInt();
+			while(betAmmount>user.balance) {
+				System.out.println(user.userName+", you can't bet more than you have!");
+				System.out.println(user.userName+", for reference, you have "+user.balance);
+				betAmmount= bet.nextInt();
 			}
-
 			user.bet(betAmmount);
-			sac.close();
 		}
 		super.game = new BlackJackGame();
 		super.isSetUp = true;

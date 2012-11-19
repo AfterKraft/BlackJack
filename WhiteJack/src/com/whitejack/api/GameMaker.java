@@ -53,7 +53,6 @@ public class GameMaker {
 			log.debug("Yo, this user "+user.userName+" has an index of: "+temp);
 
 		}
-		input.close();
 		System.out.println("All players have been added.");
 
 		//System.out.println("Player: "+ player.userName+ " has been added to the game!");  //Old debug line
@@ -88,8 +87,6 @@ public class GameMaker {
 			gameTable.setupTable();
 		}
 		startGame();
-		input.close();
-
 	}
 
 	//TODO write ability to save games to file

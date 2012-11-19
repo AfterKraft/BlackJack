@@ -28,7 +28,7 @@ public class DeckArrayManager extends Deck
      * @return
      */
     public DeckArrayManager()
-    
+    {
     }
     public DeckArrayManager(int num)
     {
@@ -64,8 +64,7 @@ public class DeckArrayManager extends Deck
     		count++;
     	else
     		shuffle();
-    	
-    	
+    	// otherwise, go ahead and deal one card and be sure to increment counter and activate the push array() method
     }
     
     // Recycle all cards into stack
@@ -93,19 +92,19 @@ public class DeckArrayManager extends Deck
     }
     public void pull(ArrayList<Card> list, int card)
     {
-    	list.remove(card);
+    	list.remove(this.card[card]);
     }
-    public void serveHand(int num)
+    public void serveHand(int cardID)
     {	// Deal out one hand to one player
-	    for (int i = count; i < num + count; i++) 
+    	int temp = 0;
+		for (int i = count; i < count + 1; i++) 
 	    {
 	    	String suit = suits[deck[i] / 13];
 	    	String rank = ranks[deck[i] % 13];
 	    	System.out.println("Card number " + deck[i] + ": " 
 	        + rank + " of " + suit);
 	    	count++;
-	    	heap.push(Card[]);
-	    	stack.pull(Card[i]);
+	    	temp = deck[i];
 	    	
 	    }
 	    System.out.println("[DeckArrayManager] serveHand() method");

@@ -9,24 +9,10 @@ public class Deck extends Card{
 	public boolean isShuffled;
 	private int cardCount;
 	private static Logger log = Logger.getLogger("WhiteJack");
-
+    private int[] deck = new int[52];
+    
 	public Deck() {
 
-		card=new Card[52];
-		
-		for(i=1;i<=13;i++)
-			card[i-1]=new Card(i,"Hearts");
-		
-		for(i=14;i<=26;i++)
-			card[i-1]=new Card(i-13,"Diamonds");
-		
-		for(i=27;i<=39;i++)
-			card[i-1]=new Card(i-26,"Clovers");
-		
-		for(i=40;i<=52;i++)
-			card[i-1]=new Card(i-39,"Spades");
-
-		i=0;
 		isShuffled=false;
 		cardCount=0;
 	}

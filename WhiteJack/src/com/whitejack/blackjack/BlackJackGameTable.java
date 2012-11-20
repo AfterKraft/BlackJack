@@ -9,7 +9,7 @@ import com.whitejack.api.Dealer;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
 
-public class BlackJackGameTable extends GameTable {
+public class BlackJackGameTable extends GameTable<BlackJackGame> {
 
 	private static final Logger log = Logger.getLogger("WhiteJack");
 	/**
@@ -92,9 +92,9 @@ public class BlackJackGameTable extends GameTable {
 
 		game.play();
 		for(User user: users) {
-			((BlackJackGame)game).requestCard(user);
-			((BlackJackGame)game).doubleDown(user);
-			((BlackJackGame)game).split(user);
+			game.requestCard(user);
+			game.doubleDown(user);
+			game.split(user);
 		}
 
 

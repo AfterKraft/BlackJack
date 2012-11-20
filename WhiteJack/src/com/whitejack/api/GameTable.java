@@ -8,7 +8,7 @@ import java.util.List;
  * @author gabizou
  *
  */
-public abstract class GameTable {
+public abstract class GameTable<GenericGame> {
 
 	public Object Background;
 	public Object TableLayout;
@@ -16,7 +16,7 @@ public abstract class GameTable {
 	protected List<User> users;
 	protected Dealer dealer;
 	protected boolean isSetUp;
-	protected Game game;
+	protected GenericGame game;
 
 	protected GameTable(Dealer dealer, List<User> users) {
 		this.users = users;

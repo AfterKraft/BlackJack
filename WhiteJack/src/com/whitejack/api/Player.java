@@ -25,14 +25,14 @@ public abstract class Player {
 	private int handValue;
 	public boolean isPlayable;
 	private boolean ace;
-	public Card card[];
+	public Card card[];	// don't need
 	
 	//Set up logger
 
 	public int cardCount=0;
 	
 	public Player() {
-		
+		// card is no longer needed as hand serves same functionality
 		card = new Card[10];  //For the sake of initializing
 		hand = new Hand[4];		
 	}

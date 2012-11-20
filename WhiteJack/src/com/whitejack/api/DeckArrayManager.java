@@ -9,10 +9,6 @@ public class DeckArrayManager extends Deck
 	private static DeckArrayManager instance;
 	private boolean cardIsPlayable = true;
 	private Card[] card;
-	private int[] deck = new int[52];
-	private String[] suits = {"Spades", "Hearts", "Diamonds", "Clubs"};
-	private String[] ranks = {"Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
-	private int count = 0;
 	private ArrayList<Card> stack = new ArrayList<Card>();
 	private ArrayList<Card> heap = new ArrayList<Card>();
 	private ArrayList<Card> recycleBin = new ArrayList<Card>();
@@ -26,13 +22,6 @@ public class DeckArrayManager extends Deck
 	{
 	}
 
-	public boolean needShuffle() 
-	{
-		if (count == 50)
-			return true;
-		else
-			return false;
-	}
 	public static DeckArrayManager getDeckArrayManager() 
 	{
 		if (instance == null)
@@ -45,18 +34,6 @@ public class DeckArrayManager extends Deck
 	/**
 	 * Returns a card
 	 */
-	public void serveCard() 
-	{
-		if (needShuffle() == false) 
-		{
-			count++;
-		} 
-		else 
-		{
-			shuffle();
-		}
-		// otherwise, go ahead and deal one card and be sure to increment counter and activate the push array() method
-	}
 
 	// Recycle all cards into stack
 	/**
@@ -80,9 +57,19 @@ public class DeckArrayManager extends Deck
 	 */
 	public void push(ArrayList<Card> list, int card) 
 	{
-		list.add(this.card[card]);
+		try
+		{
+			list.add(this.card[card]);
+		}
+		catch (Exception ex)
+		{
+			// if arrayList becomes empty handle exception here...
+		}
 	}
-
+	public boolean isStackEmpty()	// return true if needShuffle == true;
+	{
+		return false;
+	}	
 	/**
 	 * Pull a card from the array <list>
 	 * @param list
@@ -90,31 +77,17 @@ public class DeckArrayManager extends Deck
 	 */
 	public void pull(ArrayList<Card> list, int card) 
 	{
-		list.remove(this.card[card]);
-	}
-
-	/**
-	 * 
-	 * @param cardID
-	 */
-
-
-	/**
-	 * This will display a hand with the first cards defined by num
-	 * @param num
-	 */
-	public void displayHand(int num) 
-	{ 	
-		//Display the first hand of cards with the specified size of cards
-		for (int i = 0; i < num; i++) 
+		try
 		{
-			String suit = suits[deck[i] / 13];
-			String rank = ranks[deck[i] % 13];
-			log.debug("Card number " + deck[i] + ": " 
-					+ rank + " of " + suit);	
+			list.remove(this.card[card]);
+		}
+		catch (Exception ex)
+		{
+			// if arrayList becomes empty handle exception here...
 		}
 	}
 
+	 
 	/**
 	 * Getter for Card
 	 */

@@ -2,13 +2,8 @@ package com.whitejack.api;
 
 public class Hand {
 	
-	public String[] suits;
-	public String[] rank;
-	public String[] card;
-	
 	public Player player;
 
-	
 	public int getValue() {
 		return 0;
 		

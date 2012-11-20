@@ -1,6 +1,6 @@
 package com.whitejack.api;
 
-public class Hand {
+public class Hand extends Deck{
 
 	public String[] suits;
 	public String[] rank;

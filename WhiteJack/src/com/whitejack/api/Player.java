@@ -19,7 +19,7 @@ public abstract class Player {
 	
 	//Set default variables
 	public String userName;
-	protected int[] Hand;
+	protected Hand [] hand;
 	public boolean isActiveUser = false;
 	protected int balance;
 	private int handValue;
@@ -34,7 +34,7 @@ public abstract class Player {
 	public Player() {
 		
 		card = new Card[10];  //For the sake of initializing
-		
+		hand = new Hand[4];		
 	}
 	
 	public Player(String username) {
@@ -42,7 +42,7 @@ public abstract class Player {
 		
 	}
 	
-	public void recieveCard(Deck deck) {
+	public void requestCard(Deck deck) {
 		log.debug("[Player] Just to check that Player.recieveCard() has just been called.");  //Debugging line
 		
 		card[cardCount] = deck.dealCard();
@@ -96,7 +96,8 @@ public abstract class Player {
 		status[0] = userName;
 		status[1] = Integer.toString(balance);
 		status[2] = Boolean.toString(isActiveUser);
-		status[3] = Integer.toString(Hand[0]);
+//		status[3] = Integer.toString(hand[0]);	
+// I commented this out for now to keep the code from breaking
 		
 		return status;
 	}

@@ -10,8 +10,10 @@ public class Card {
 
 	private int cardID;
 	private int value;
-	private String suits[], suit;
-	private String ranks[], rank;
+	protected String suits[];
+	private String suit;
+	protected String ranks[];
+	private String rank;
 	private URL url;
 	private String path;
 	private ImageIcon icon;

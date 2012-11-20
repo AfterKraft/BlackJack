@@ -6,12 +6,17 @@ import java.util.Scanner;
 import org.apache.log4j.Logger;
 
 import com.whitejack.api.Dealer;
+import com.whitejack.api.Deck;
+import com.whitejack.api.DeckArrayManager;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
+import com.whitejack.api.event.handler.GameTableEventHandler;
 
 public class BlackJackGameTable extends GameTable 
 {
 	private static final Logger log = Logger.getLogger("WhiteJack");
+	private static DeckArrayManager manager = DeckArrayManager.getDeckArrayManager();
+	private static GameTableEventHandler handler;
 	/**
 	 * Creates a container for the User and dealer
 	 * 
@@ -100,7 +105,7 @@ public class BlackJackGameTable extends GameTable
 		game.play();
 		for(User user: users) 
 		{
-			((BlackJackGame)game).requestCard(user);
+			((BlackJackGame)game).requestCardForPlayer(user);
 			((BlackJackGame)game).doubleDown(user);
 			((BlackJackGame)game).split(user);
 		}
@@ -139,7 +144,7 @@ public class BlackJackGameTable extends GameTable
 	public void shuffle() 
 	{
 		// TODO Auto-generated method stub
-
+		manager.shuffle();
 	}
 
 	@Override

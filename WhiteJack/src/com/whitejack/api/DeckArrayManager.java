@@ -25,14 +25,7 @@ public class DeckArrayManager extends Deck
 	public DeckArrayManager() 
 	{
 	}
-	public int getCount() 
-	{
-		return count;
-	}
-	public void setCount(int c) 
-	{
-		count = c;
-	}
+
 	public boolean needShuffle() 
 	{
 		if (count == 50)
@@ -79,18 +72,6 @@ public class DeckArrayManager extends Deck
 	/**
 	 * Shuffles the current deck
 	 */
-	public void shuffle() 
-	{
-		for (int i = 0; i < deck.length; i++) 
-		{
-			// Generate an index randomly
-			int index = (int)(Math.random() * deck.length);
-			int temp = deck[i];
-			deck[i] = deck[index]; 
-			deck[index] = temp;
-		}
-		log.debug("[DeckArrayManager] shuffle() method");
-	}
 
 	/**
 	 * Push a card into the array <list> 
@@ -116,21 +97,7 @@ public class DeckArrayManager extends Deck
 	 * 
 	 * @param cardID
 	 */
-	public void serveHand(int cardID) 
-	{	// Deal out one hand to one player
-		int temp = 0;
-		for (int i = count; i < count + 1; i++) 
-		{
-			String suit = suits[deck[i] / 13];
-			String rank = ranks[deck[i] % 13];
-			log.debug("Card number " + deck[i] + ": " 
-					+ rank + " of " + suit);
-			count++;
-			temp = deck[i];
 
-		}
-		log.debug("[DeckArrayManager] serveHand() method");
-	}	
 
 	/**
 	 * This will display a hand with the first cards defined by num

@@ -1,7 +1,8 @@
 package com.whitejack.api.event.handler;
 
-public interface GameTableEventHandler {
-	
+public interface GameTableEventHandler 
+{
+	public void addGameTableEventHandler();
 	public void communicateToUser();
 	public void playerWins();
 	public void playerLoses();

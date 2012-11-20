@@ -34,9 +34,9 @@ public class BlackJackGame extends Game
 	public enum Play { Hit, Stay, Stand, DoubleDown, Split, Surrender };
 	
 	
-	public BlackJackGame() {
+	public BlackJackGame() 
+	{
 	}
-
 
 	@Override
 	public void start() {
@@ -53,25 +53,27 @@ public class BlackJackGame extends Game
 	 * game are of type Player. Generics are usefull man :)
 	 * @param player
 	 */
-	protected void requestCard(Player player) {
-		
-		System.out.println(player.userName+" has requested a card!");
-		
-	
+	protected void requestCardForPlayer(Player player) 
+	{	
+		System.out.println(player.userName+" has requested a card!");	
 	}
-	
-	protected void stand(Player player) {
-	
+	protected void requestHandForPlayer(Player player)
+	{
+		System.out.println(player.userName+" has requested a hand!");	
+
+	}
+	protected void stand(Player player) 
+	{	// throw PlayerOptionEvent object
 		System.out.println(player.userName+" has stood up!");
 	}
 	
-	protected void split(Player player) {
-	
+	protected void split(Player player) 
+	{	// throw PlayerOptionEvent object
 		System.out.println(player.userName+" has requested to split their hand!");
 	}
 
 	protected void doubleDown(Player player) {
-		
+		// throw PlayerOptionEvent object
 		System.out.println(player.userName+" has requested to double down!");
 	}
 	

@@ -12,15 +12,14 @@ import org.apache.log4j.Logger;
  * @author gabizou
  * 
  */
-public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameFactory<G,GT>> {
-
-	private static Logger log = Logger.getLogger("WhiteJack");
-
+public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameFactory<G, GT>> {
 	protected G game;
 	protected GT gameTable;
-	protected GF gameFactory;
 	protected List<User> users;
+	private static Logger log = Logger.getLogger("WhiteJack");
 	private int numOfPlayers;
+
+	public GF gameFactory;
 
 	// private Scanner input = new Scanner(System.in);
 
@@ -47,13 +46,11 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 			log.info("Alright, Player " + (i + 1) + ": What is your name?\n");
 			tempUser.userName = input.nextLine();
 			tempUser.playerName = tempUser.userName;
-			log.info("Thank you, " + tempUser.userName
-					+ " has been added to the game.");
+			log.info("Thank you, " + tempUser.userName + " has been added to the game.");
 			User user = new User(tempUser.userName, tempUser.playerName);
 			this.users.add(user);
 			int temp = users.indexOf(user);
-			log.debug("Yo, this user " + user.userName + " has an index of: "
-					+ temp);
+			log.debug("Yo, this user " + user.userName + " has an index of: " + temp);
 		}
 		System.out.println("All players have been added.");
 

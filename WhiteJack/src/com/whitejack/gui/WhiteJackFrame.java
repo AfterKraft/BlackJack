@@ -29,7 +29,7 @@ public class WhiteJackFrame extends JFrame {
 	public WhiteJackFrame() {
 
 		System.out
-				.println("\nGame begins...1Now about to construct WhiteJackFrame");
+				.println("\nGame begins...Now about to construct WhiteJackFrame");
 		c = getContentPane();
 		mbgp = new WhiteJackBackground();
 		mbgp.setLayout(new BorderLayout());

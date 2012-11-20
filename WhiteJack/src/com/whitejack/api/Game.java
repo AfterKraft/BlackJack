@@ -1,22 +1,19 @@
 package com.whitejack.api;
 
-/**
- * Holds all game specific methods for game specific logic
- * 
- * Abstract for comparison and possible aggregation of
- * available games
- * 
- * @author gabizou
- *
- */
-public abstract class Game {
-	
-	protected Dealer dealer;
-	protected Deck deck;
-	protected User user;
-	
+public abstract class Game implements Runnable {
+	protected Player players[];
+
+	// THIS IS FOR THE SINGLE THREAD OPTION
 	public void start() {
-		
 	}
 
+	public void stop() {
+	}
+
+	public void play() {
+	}
+
+	// THIS IS FOR THE MUL-THREAD OPTION
+	public void run() {/* THE CODE HERE IS A THE @OVERRIDE FOR START() METHOD */
+	}
 }

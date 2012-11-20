@@ -8,30 +8,31 @@ import java.util.List;
  * @author gabizou
  *
  */
-public abstract class GameTable {
+public abstract class GameTable<G extends Game> {
 
 	public Object Background;
 	public Object TableLayout;
-	
 	protected Deck deck;
 	protected List<User> users;
 	protected Dealer dealer;
 	protected boolean isSetUp;
-	protected Game game;
-	
+	protected G game;
+
 	protected GameTable(Dealer dealer, List<User> users) {
 		this.users = users;
 		this.dealer = dealer;
 	}
-	
+
 	abstract protected void setupTable();
-	
+
 	abstract protected void getCard();
-	
+
 	abstract protected void shuffle();
-	
+
 	abstract protected void initialize();
 	
+	abstract protected void removePlayer(User user);
+
 	public void playGame() {
 		initialize();
 		shuffle();
@@ -55,7 +56,7 @@ public abstract class GameTable {
 	 * @return true if we are to continue the game; false if the player requested quitting the game.
 	 */
 	abstract protected boolean play(User user);
-	
+
 	abstract protected void gameOver();
 
 	abstract protected void startGame();

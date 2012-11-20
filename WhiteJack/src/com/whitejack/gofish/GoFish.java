@@ -5,13 +5,16 @@ import java.util.Scanner;
 
 public class GoFish extends Game {
 
+	public Dealer dealer;
+	public Deck deck;
+	public User user;
 	public boolean stand,bust;
 	public boolean GameOver;
 
 	public GoFish(Dealer dealer, Deck deck, User user) {
-		super.dealer = dealer;
-		super.deck = deck;
-		super.user = user;
+		this.dealer = dealer;
+		this.deck = deck;
+		this.user = user;
 	}
 
 	public void start() {
@@ -19,7 +22,7 @@ public class GoFish extends Game {
 		Scanner input = new Scanner(System.in);
 
 		if(deck.isShuffled != true) {
-			deck.shuffle();
+			//deck.shuffle();
 		}
 
 		dealer.recieveCard(deck);

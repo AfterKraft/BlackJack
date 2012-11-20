@@ -3,28 +3,30 @@ package com.whitejack.api;
 import java.util.List;
 
 /**
- * A factory to create games and gametables
+ * GameFactory is now using Generics of Types Game and GameTable.
+ * These must be honored in all of our API & API implementation.
  * 
  * @author gabizou
  *
+ * @param <G> Type Game
+ * @param <GT>  Type GameTable
  */
-public interface GameFactory {
-	
+public interface GameFactory<G extends Game, GT extends GameTable<G>> {
 
 	/**
-	 * Creates a GameTable setup with the dealer and list of
-	 * users playing. 
+	 * Creates a GameTable setup with the dealer and list of users playing.
+	 * 
 	 * @param dealer
 	 * @param users
 	 * @return
 	 */
-	public GameTable createTable(Dealer dealer, List<User> users);
-	
+	public GT createTable(Dealer dealer, List<User> users);
+
 	/**
 	 * Creates the Game object for all Game logic to be processed
+	 * 
 	 * @return
 	 */
-	public Game createGame();
-	
-	
+	public G createGame();
+
 }

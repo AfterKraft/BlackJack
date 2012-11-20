@@ -9,7 +9,7 @@ import com.whitejack.api.Dealer;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
 
-public class BlackJackGameTable extends GameTable {
+public class BlackJackGameTable extends GameTable<BlackJackGame> {
 
 	private static final Logger log = Logger.getLogger("WhiteJack");
 	/**
@@ -26,6 +26,7 @@ public class BlackJackGameTable extends GameTable {
 	 * Sets up the GameTable taking user bets for all players in 
 	 * playable <User> list.
 	 */
+	@Override
 	public void setupTable() {
 		for(User user : users) {
 			Scanner bet = new Scanner(System.in);
@@ -35,16 +36,18 @@ public class BlackJackGameTable extends GameTable {
 				bet.nextLine();
 			}
 			int betAmmount=bet.nextInt();
-			do{
+			while(betAmmount>user.balance) {
 				System.out.println(user.userName+", you can't bet more than you have!");
 				System.out.println(user.userName+", for reference, you have "+user.balance);
 				betAmmount= bet.nextInt();
-			} while(betAmmount>user.balance);
+			}
 			user.bet(betAmmount);
 		}
-		super.game = new BlackJack();
+		super.game = new BlackJackGame();
+
 		super.isSetUp = true;
 	}
+
 	/**
 	 * Removes the User with userName matching from the GameTable
 	 * 
@@ -52,6 +55,7 @@ public class BlackJackGameTable extends GameTable {
 	 * @param user
 	 */
 
+	@Override
 	public void removePlayer(User user) {
 		//Sets the boolean states to false for any system checks
 		//User temp = new User(User user);
@@ -61,7 +65,8 @@ public class BlackJackGameTable extends GameTable {
 			User temp1 = super.users.get(i);
 			log.debug("Temp1;s username is: "+temp1.userName);
 			log.debug("Temp's name is :"+user.userName);
-			if (temp1.userName.equals(user.userName)) {
+			if (temp1.userName.equals(user.userName)) 
+			{
 				index = super.users.indexOf(temp1);
 			} else {
 			}
@@ -70,16 +75,21 @@ public class BlackJackGameTable extends GameTable {
 		super.users.remove(index);
 		log.debug("[BlackJackGameTable] The requested user has been removed from the GameTable User list");
 	}
-	
+
 	/**
-	 * Starts the first round and continues playing until the boolean endGame becomes true
-	 * 
+	 * Starts a round of the game. Need to implement the new
+	 * DeckArrayManager
 	 */
 	@Override
 	protected void startGame() {
-		
-		
-		
+		this.game = new BlackJackGame();
+		game.play();
+
+		for(User user: users) {
+			((BlackJackGame)game).requestCard(user);
+			((BlackJackGame)game).doubleDown(user);
+			((BlackJackGame)game).split(user);
+		}
 	}
 
 	/**
@@ -100,26 +110,21 @@ public class BlackJackGameTable extends GameTable {
 			}
 		} while (run);
 		gameOver();
-
-
 	}
 
 	@Override
 	public void getCard() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void shuffle() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -131,11 +136,6 @@ public class BlackJackGameTable extends GameTable {
 	@Override
 	protected void gameOver() {
 		// TODO Auto-generated method stub
-
 	}
-
-
-
-
 
 }

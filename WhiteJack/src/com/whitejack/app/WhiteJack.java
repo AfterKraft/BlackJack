@@ -3,9 +3,10 @@ package com.whitejack.app;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
-import com.whitejack.api.GameFactory;
 import com.whitejack.api.GameMaker;
 import com.whitejack.blackjack.BlackJackFactory;
+import com.whitejack.blackjack.BlackJackGame;
+import com.whitejack.blackjack.BlackJackGameTable;
 import com.whitejack.gui.GUIManager;
 
 public class WhiteJack {
@@ -23,13 +24,12 @@ public class WhiteJack {
 		log.info("\n");
 		
 		//Start GameMaker
-		GameMaker GM = new GameMaker();  //Initialize GameMaker
+		GameMaker<BlackJackGame, BlackJackGameTable, BlackJackFactory> GM = new GameMaker<BlackJackGame, BlackJackGameTable, BlackJackFactory>();
+		//Initialize GameMaker
 		log.info("\nSuccessfully launched GameMaker");
+//		log.info("\nSuccessfully initialized BlackJackFactory!");
 		
-		GameFactory gf = new BlackJackFactory();   //Initialize a BlackJack Game
-		log.info("\nSuccessfully initialized BlackJackFactory!");
-		
-		GM.setupGame(gf);   //Start the Game making process
+		GM.setupGame(); // Start the Game making process
 		log.info("\nSuccessfully called setUpGame() method");
 		GM.startGame();   //Start playing BlackJack
 		

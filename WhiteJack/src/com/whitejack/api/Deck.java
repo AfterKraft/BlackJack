@@ -48,7 +48,7 @@ public class Deck extends Card{
 		}
 		log.debug("[DeckArrayManager] shuffle() method");
 	}
-	public void serveHand(int cardID) 
+	private void serveHand(int cardID) 
 	{	// Deal out one hand to one player
 		int temp = 0;
 		for (int i = count; i < count + 1; i++) 
@@ -63,6 +63,23 @@ public class Deck extends Card{
 		}
 		log.debug("[DeckArrayManager] serveHand() method");
 	}	
+
+	/**
+	 * This will display a hand with the first cards defined by num
+	 * @param num
+	 */
+	public void displayHand(int num) 
+	{ 	
+		//Display the first hand of cards with the specified size of cards
+		for (int i = 0; i < num; i++) 
+		{
+			String suit = suits[deck[i] / 13];
+			String rank = ranks[deck[i] % 13];
+			log.debug("Card number " + deck[i] + ": " 
+					+ rank + " of " + suit);	
+		}
+	}
+
 	public Card dealCard() 
 	{
 		return null;

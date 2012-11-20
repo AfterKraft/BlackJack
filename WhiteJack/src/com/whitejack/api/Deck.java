@@ -10,7 +10,7 @@ public class Deck extends Card{
 	public boolean isShuffled;
 	private int cardCount;
 	private static Logger log = Logger.getLogger("WhiteJack");
-    	protected int[] deck = new int[52];
+    protected int[] deck = new int[52];
 	private int numDecks = 1;
 	private int numCards = 52;
 	public Deck() {
@@ -28,6 +28,13 @@ public class Deck extends Card{
 	}
 	public void show()
 	{
+	}
+	public boolean needShuffle() // ->brought from DeckArrayManager
+	{
+		if (count == 52)
+			return true;
+		else
+			return false;
 	}
 	public void shuffle() 
 	{
@@ -54,11 +61,11 @@ public class Deck extends Card{
 			temp = deck[i];
 
 		}
-		log.debug("[Deck] serveHand() method");
+		log.debug("[DeckArrayManager] serveHand() method");
 	}	
 	public Card dealCard() 
 	{
-		return null;	//this code is commented out for testing purposes only k.n. 11/19
+		return null;
 /*		log.debug("[Deck] Check to make sure the Deck.dealcard has been started. in Deck");  //Debugging line
 		
 		Card temp=card[i];

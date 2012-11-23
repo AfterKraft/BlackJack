@@ -2,6 +2,13 @@ package com.whitejack.api;
 
 import org.apache.log4j.Logger;
 
+/** what the Deck class represents is an array of cards that in 
+ * essence whose arrayLength (num of cards in it) can vary. in 
+ * default it is 52, the hand can be considered a subclass of 
+ * Deck (and in fact Hand extends Deck)
+ * @author kevin
+ *
+ */
 public class Deck extends Card{
 
 	private Card[] card;

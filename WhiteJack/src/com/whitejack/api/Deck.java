@@ -14,7 +14,6 @@ public class Deck extends Card {
 
 	protected int[] deck = new int[52];
 	protected int count = 0;
-	private int i;
 	public boolean isShuffled;
 	private int cardCount;
 	private static Logger log = Logger.getLogger("WhiteJack");
@@ -65,12 +64,12 @@ public class Deck extends Card {
 	public Card serveCard() {
 		Card temp = new Card();
 		int tempID = 0;
-		String suit = suits[deck[i] / 13];
-		String rank = ranks[deck[i] % 13];
-		log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
-		count++;
-		tempID = deck[i];
-		log.debug("[DeckArrayManager] serveHand() method");
+		String suit = suits[deck[count] / 13];
+		String rank = ranks[deck[count] % 13];
+		log.debug("Card number " + deck[count] + ": " + rank + " of " + suit);
+		this.count++;
+		tempID = deck[count];
+		log.debug("[Deck] serveHand() method");
 		temp.setCardID(tempID);
 		return temp;
 	}

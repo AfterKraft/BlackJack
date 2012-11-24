@@ -88,7 +88,7 @@ public class DeckArrayManager extends Deck {
 		for (int i = count; i < count + 1; i++) {
 			String suit = suits[deck[i] / 13];
 			String rank = ranks[deck[i] % 13];
-			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
+			log.debug("[DeckArrayManager] Card number " + deck[i] + ": " + rank + " of " + suit);
 			count++;
 			temp = deck[i];
 

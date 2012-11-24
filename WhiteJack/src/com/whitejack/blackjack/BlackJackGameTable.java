@@ -92,14 +92,11 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 	protected void startGame() {
 		this.game = new BlackJackGame();
 
-		for (User user : users) {
-			// game.requestCardForPlayer(user);
-			// game.doubleDown(user);
-			// game.split(user);
-			// DEAL HANDS FOR EACH User
+		for (User user : users) { //Deal two cards for each user
+			System.out.println("The deck count is at: "+ deck.getCount());
 			Card card = deck.serveCard();
-			System.out.println("card is: " + card.getSuit() + " of "
-					+ card.getRank());
+			System.out.println("The deck count is at: "+ deck.getCount());
+			System.out.println("card is: " + card.getSuit() + " of " + card.getRank());
 
 		}
 	}

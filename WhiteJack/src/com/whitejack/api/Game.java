@@ -3,7 +3,9 @@ package com.whitejack.api;
 public abstract class Game implements Runnable {
 	protected Player players[];
 
-	// THIS IS FOR THE SINGLE THREAD OPTION
+	/**
+	 * @deprecated Don't use start() unless you wish to perform a single thread game with a single user.
+	 */
 	public void start() {
 	}
 

@@ -3,7 +3,6 @@ package com.whitejack.app;
 import org.apache.log4j.Logger;
 import org.apache.log4j.BasicConfigurator;
 
-import com.whitejack.api.GameFactory;
 import com.whitejack.api.GameMaker;
 import com.whitejack.blackjack.BlackJackFactory;
 import com.whitejack.blackjack.BlackJackGame;
@@ -29,8 +28,6 @@ public class WhiteJack {
 
 		GM.gameFactory = new BlackJackFactory();
 		GM.setupGame(); // Start the Game making process
-		log.info("\nSuccessfully called setUpGame() method");
-		GM.startGame(); // Start playing BlackJack
 
 		GUIManager gui = new GUIManager();
 		log.info("\ngui opened");

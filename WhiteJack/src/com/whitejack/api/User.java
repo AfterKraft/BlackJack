@@ -18,7 +18,7 @@ public class User extends Player {
 	 * User constrcutor creates a default user of default balance and generic
 	 * username and stores the dateCreated as a string for storage purposes
 	 */
-	public User() {
+	public User() { // Generates a default user with a default name
 
 		hand = new Hand[6];
 		log.warn("[User] Making a Default User!"); // Debugging Line
@@ -32,7 +32,7 @@ public class User extends Player {
 
 	}
 
-	public User(String playerName, String userName) {
+	public User(String playerName, String userName) { //Generates a personalized user for future user accounts
 		this.playerName = playerName;
 		this.userName = userName;
 		Time time = new Time();

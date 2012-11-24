@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.whitejack.blackjack.BlackJackGame;
+import com.whitejack.blackjack.BlackJackGameTable;
+
 /**
  * A setup class to create games, determining amount of players etc.
  * 
@@ -67,10 +70,11 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 	 * 
 	 * Game = Game logic used by GameTable GameTable = container for the <User>
 	 * list and executes Game methods
+	 * 
+	 * @param gf
 	 */
 	@SuppressWarnings("resource")
 	public void setupGame() {
-
 		// Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 

@@ -9,6 +9,7 @@ public class User extends Player {
 
 	public String playerName;
 	public String dateCreated;
+	public Hand[] hand;
 	public int bet;
 	public int balance;
 	private static Logger log = Logger.getLogger("WhiteJack");
@@ -19,6 +20,7 @@ public class User extends Player {
 	 */
 	public User() {
 
+		hand = new Hand[6];
 		log.warn("[User] Making a Default User!"); // Debugging Line
 		balance = 300;
 		playerName = "DefaultUser";

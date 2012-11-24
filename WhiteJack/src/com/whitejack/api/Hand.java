@@ -1,19 +1,18 @@
 package com.whitejack.api;
 
-public class Hand {
+import java.util.ArrayList;
 
-	public String[] suits;
-	public String[] rank;
-	public String[] card;
-	public Player player;
+public class Hand extends ArrayList<Card> {
+
+	ArrayList<Card> hand = new ArrayList<Card>();
+
+	public Hand(int n) {
+		super(n);
+		// TODO Auto-generated constructor stub
+	}
 
 	public int getValue() {
 		return 0;
-
-	}
-
-	public Player getPlayer() {
-		return player;
 	}
 
 	public boolean isHitOption() {

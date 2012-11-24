@@ -39,10 +39,11 @@ public class BlackJackGame extends Game {
 	}
 
 	@Override
-	public void start() {
+	public void start() {	//Request Bet from players - this is the START POINT of the race to beat the dealer
 		betHandler = new BetHandler(); // first order is to start bet
 		System.out.println("hi");
 		log.debug("[BlackJack] inside start() method");
+		
 	}
 
 	public void play() {

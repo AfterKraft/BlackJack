@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 public class DeckArrayManager extends Deck {
+	public DeckArrayManager(int n) {
+		super(n);
+		// TODO Auto-generated constructor stub
+	}
+
 	private static DeckArrayManager instance;
 	private boolean cardIsPlayable = true;
 	private Card[] card;
@@ -17,8 +22,6 @@ public class DeckArrayManager extends Deck {
 	 * This method is accessed from outside the class by deck =
 	 * DeckArrayManager.getDeckArrayManager();
 	 */
-	public DeckArrayManager() {
-	}
 
 	public int getCount() {
 		return count;
@@ -37,32 +40,10 @@ public class DeckArrayManager extends Deck {
 
 	public static DeckArrayManager getDeckArrayManager() {
 		if (instance == null) {
-			instance = new DeckArrayManager();
+			instance = new DeckArrayManager(1);
 			log.debug("[DeckArrayManager] inside getter() method");
 		}
 		return instance;
-	}
-
-	/**
-	 * Returns a card
-	 */
-	public void serveCard() {
-		if (needShuffle() == false) {
-			count++;
-		} else {
-			shuffle();
-		}
-		// otherwise, go ahead and deal one card and be sure to increment
-		// counter and activate the push array() method
-	}
-
-	// Recycle all cards into stack
-	/**
-	 * Initializes the deck array
-	 */
-	public void initDeck() {
-		for (int i = 0; i < deck.length; i++)
-			deck[i] = i;
 	}
 
 	/**

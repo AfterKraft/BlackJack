@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.whitejack.api.Card;
 import com.whitejack.api.Dealer;
+import com.whitejack.api.Deck;
 import com.whitejack.api.GameTable;
 import com.whitejack.api.User;
 
@@ -32,19 +34,25 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 		for (User user : users) {
 			@SuppressWarnings("resource")
 			Scanner bet = new Scanner(System.in);
-			System.out.print(user.userName + ", how much would you like to bet?");
+			System.out.print(user.userName
+					+ ", how much would you like to bet?");
 			while (!bet.hasNextInt()) {
 				System.out.println("Please enter a number!");
 				bet.nextLine();
 			}
 			int betAmmount = bet.nextInt();
 			while (betAmmount > user.balance) {
-				System.out.println(user.userName + ", you can't bet more than you have!");
-				System.out.println(user.userName + ", for reference, you have " + user.balance);
+				System.out.println(user.userName
+						+ ", you can't bet more than you have!");
+				System.out.println(user.userName + ", for reference, you have "
+						+ user.balance);
 				betAmmount = bet.nextInt();
 			}
 			user.bet(betAmmount);
 		}
+		deck = new Deck(52);
+		deck.initDeck();
+		deck.shuffle();
 		super.game = new BlackJackGame();
 
 		super.isSetUp = true;
@@ -83,12 +91,16 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 	@Override
 	protected void startGame() {
 		this.game = new BlackJackGame();
-		game.play();
 
 		for (User user : users) {
-			game.requestCardForPlayer(user);
-			game.doubleDown(user);
-			game.split(user);
+			// game.requestCardForPlayer(user);
+			// game.doubleDown(user);
+			// game.split(user);
+			// DEAL HANDS FOR EACH User
+			Card card = deck.serveCard();
+			System.out.println("card is: " + card.getSuit() + " of "
+					+ card.getRank());
+
 		}
 	}
 

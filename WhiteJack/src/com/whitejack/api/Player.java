@@ -79,24 +79,20 @@ public abstract class Player {
 
 	}
 
-	public void stand() {
-
+	public void addHand(Hand hand) {
+		int empty = 0;
+		for (int i = 0; i < 4; i++) {
+			if (this.hand[i] == null) {
+				empty = i;
+			} else {
+				empty++;
+			}
+		}
+		this.hand[empty] = hand;
 	}
 
-	public void hit() {
-
-	}
-
-	public void surrender() {
-
-	}
-
-	public void split() {
-
-	}
-
-	public void doubleDown() {
-
+	public void addCard(Card card, int handID) {
+		this.hand[handID].add(card);
 	}
 
 	/**

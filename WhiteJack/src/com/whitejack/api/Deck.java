@@ -12,11 +12,7 @@ import org.apache.log4j.Logger;
  */
 public class Deck extends Card {
 
-	private Card[] card;
 	protected int[] deck = new int[52];
-	protected String[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
-	protected String[] ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9",
-			"10", "Jack", "Queen", "King" };
 	protected int count = 0;
 	private int i;
 	public boolean isShuffled;
@@ -25,11 +21,16 @@ public class Deck extends Card {
 	private int numDecks = 1;
 	private int numCards = 52;
 
-	public Deck() {
-
+	public Deck(int n) {
+		this.numCards = n;
 		isShuffled = false;
 		cardCount = 0;
 	}
+
+	// Recycle all cards into stack
+	/**
+	 * Initializes the deck array
+	 */
 
 	public int getCount() {
 		return count;
@@ -61,14 +62,26 @@ public class Deck extends Card {
 		log.debug("[DeckArrayManager] shuffle() method");
 	}
 
-	public void serveCard() {
-		if (needShuffle() == false) {
-			count++;
-		} else {
-			shuffle();
-		}
-		// otherwise, go ahead and deal one card and be sure to increment
-		// counter and activate the push array() method
+	public Card serveCard() {
+		Card temp = new Card();
+		int tempID = 0;
+		String suit = suits[deck[i] / 13];
+		String rank = ranks[deck[i] % 13];
+		log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
+		count++;
+		tempID = deck[i];
+		log.debug("[DeckArrayManager] serveHand() method");
+		temp.setCardID(tempID);
+		return temp;
+	}
+
+	// Recycle all cards into stack
+	/**
+	 * Initializes the deck array
+	 */
+	public void initDeck() {
+		for (int i = 0; i < deck.length; i++)
+			deck[i] = i;
 	}
 
 	private void serveHand(int cardID) { // Deal out one hand to one player
@@ -96,6 +109,10 @@ public class Deck extends Card {
 			String rank = ranks[deck[i] % 13];
 			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
 		}
+	}
+
+	public void displayHand() {
+
 	}
 
 	public Card dealCard() {

@@ -25,8 +25,8 @@ public class GoFish extends Game {
 			//deck.shuffle();
 		}
 
-		dealer.recieveCard(deck);
-		user.recieveCard(deck);
+//		dealer.recieveCard(deck);
+//		user.recieveCard(deck);
 
 		while(!GameOver) {
 			System.out.println("Please ask the dealer for a card.");

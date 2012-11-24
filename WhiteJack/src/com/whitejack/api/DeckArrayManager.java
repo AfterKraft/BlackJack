@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
-public class DeckArrayManager extends Deck
-{
+public class DeckArrayManager extends Deck {
 	private static DeckArrayManager instance;
 	private boolean cardIsPlayable = true;
 	private Card[] card;
@@ -13,91 +12,118 @@ public class DeckArrayManager extends Deck
 	private ArrayList<Card> heap = new ArrayList<Card>();
 	private ArrayList<Card> recycleBin = new ArrayList<Card>();
 	private static Logger log = Logger.getLogger("WhiteJackAPI");
+
 	/**
-	 *  This method is accessed from 
-	 *  outside the class by 
-	 *  deck = DeckArrayManager.getDeckArrayManager();
+	 * This method is accessed from outside the class by deck =
+	 * DeckArrayManager.getDeckArrayManager();
 	 */
-	public DeckArrayManager() 
-	{
+	public DeckArrayManager() {
 	}
 
-	public static DeckArrayManager getDeckArrayManager() 
-	{
-		if (instance == null)
-		{
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int c) {
+		count = c;
+	}
+
+	public boolean needShuffle() {
+		if (count == 50)
+			return true;
+		else
+			return false;
+	}
+
+	public static DeckArrayManager getDeckArrayManager() {
+		if (instance == null) {
 			instance = new DeckArrayManager();
 			log.debug("[DeckArrayManager] inside getter() method");
 		}
 		return instance;
 	}
+
 	/**
 	 * Returns a card
 	 */
+	public void serveCard() {
+		if (needShuffle() == false) {
+			count++;
+		} else {
+			shuffle();
+		}
+		// otherwise, go ahead and deal one card and be sure to increment
+		// counter and activate the push array() method
+	}
 
 	// Recycle all cards into stack
 	/**
 	 * Initializes the deck array
 	 */
-	public void initDeck() 
-	{
+	public void initDeck() {
 		for (int i = 0; i < deck.length; i++)
 			deck[i] = i;
 	}
 
-	// Shuffle the cards
 	/**
-	 * Shuffles the current deck
-	 */
-
-	/**
-	 * Push a card into the array <list> 
+	 * Push a card into the array <list>
+	 * 
 	 * @param list
 	 * @param card
 	 */
-	public void push(ArrayList<Card> list, int card) 
-	{
-		try
-		{
+	public void push(ArrayList<Card> list, int card) {
+		try {
 			list.add(this.card[card]);
-		}
-		catch (Exception ex)
-		{
+		} catch (Exception ex) {
 			// if arrayList becomes empty handle exception here...
 		}
 	}
-	public boolean isStackEmpty()	// return true if needShuffle == true;
+
+	public boolean isStackEmpty() // return true if needShuffle == true;
 	{
 		return false;
-	}	
+	}
+
 	/**
 	 * Pull a card from the array <list>
+	 * 
 	 * @param list
 	 * @param card
 	 */
-	public void pull(ArrayList<Card> list, int card) 
-	{
-		try
-		{
+	public void pull(ArrayList<Card> list, int card) {
+		try {
 			list.remove(this.card[card]);
-		}
-		catch (Exception ex)
-		{
-			// if arrayList becomes empty handle exception here...
+		} finally {
 		}
 	}
 
-	 
+	/**
+	 * 
+	 * @param cardID
+	 * @return
+	 */
+	public int serveHand(int cardID) { // Deal out one hand to one player
+		int temp = 0;
+		for (int i = count; i < count + 1; i++) {
+			String suit = suits[deck[i] / 13];
+			String rank = ranks[deck[i] % 13];
+			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
+			count++;
+			temp = deck[i];
+
+		}
+		return temp;
+	}
+
 	/**
 	 * Getter for Card
 	 */
-	public void getCard()
-	{
+	public void getCard() {
 	}
+
 	/**
 	 * Setter for Card
 	 */
-	public void setCard() 
-	{
+	public void setCard() {
 	}
 }

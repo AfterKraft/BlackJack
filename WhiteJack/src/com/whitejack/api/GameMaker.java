@@ -4,96 +4,98 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
 import org.apache.log4j.Logger;
 
 /**
  * A setup class to create games, determining amount of players etc.
  * 
  * @author gabizou
- *
+ * 
  */
-public class GameMaker {
-
-	private static Logger log = Logger.getLogger("WhiteJack");
-
-	protected Game game;
-	protected GameTable gameTable;
+public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameFactory<G, GT>> {
+	protected G game;
+	protected GT gameTable;
 	protected List<User> users;
+	private static Logger log = Logger.getLogger("WhiteJack");
 	private int numOfPlayers;
-//	private Scanner input = new Scanner(System.in);
+
+	public GF gameFactory;
+
+	// private Scanner input = new Scanner(System.in);
 
 	public GameMaker() {
 		log.info("GameMaker Started!");
 	}
 
 	/**
-	 * Adds the player to the game and sets their isActiveUser to true for 
-	 * system checks. 
+	 * Adds the player to the game and sets their isActiveUser to true for
+	 * system checks.
+	 * 
 	 * @param player
 	 */
 	public void addPlayers(int numOfPlayers) {
 
-		//Debug line for verification of Starting addPlayer() method
+		// Debug line for verification of Starting addPlayer() method
 		this.numOfPlayers = numOfPlayers;
 		this.users = new ArrayList<User>();
 
+		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
-		for(int i=0; i<numOfPlayers; i++) {
+		for (int i = 0; i < numOfPlayers; i++) {
 			User tempUser = new User();
 
-
-			log.info("Alright, Player "+(i+1)+": What is your name?\n");
+			log.info("Alright, Player " + (i + 1) + ": What is your name?\n");
 			tempUser.userName = input.nextLine();
 			tempUser.playerName = tempUser.userName;
-			log.info("Thank you, "+tempUser.userName+" has been added to the game.");
+			log.info("Thank you, " + tempUser.userName
+					+ " has been added to the game.");
 			User user = new User(tempUser.userName, tempUser.playerName);
 			this.users.add(user);
 			int temp = users.indexOf(user);
-			log.debug("Yo, this user "+user.userName+" has an index of: "+temp);
-
+			log.debug("Yo, this user " + user.userName + " has an index of: "
+					+ temp);
 		}
 		System.out.println("All players have been added.");
 
-		//System.out.println("Player: "+ player.userName+ " has been added to the game!");  //Old debug line
+		// System.out.println("Player: "+ player.userName+
+		// " has been added to the game!"); //Old debug line
 
 	}
 
-
-
 	/**
-	 * Creates a GameFactory to create the 
-	 * gameType specific Game and GameTable
+	 * Creates a GameFactory to create the gameType specific Game and GameTable
 	 * 
-	 * Game = Game logic used by GameTable
-	 * GameTable = container for the <User> list and executes Game methods
+	 * Game = Game logic used by GameTable GameTable = container for the <User>
+	 * list and executes Game methods
 	 */
-	public void setupGame(GameFactory gameFactory) {
+	@SuppressWarnings("resource")
+	public void setupGame() {
 
-		//Sets up Dealer and Deck
+		// Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 
 		Scanner input = new Scanner(System.in);
 		System.out.println("How many players will be playing?");
-		while(!input.hasNextInt()) {
+		while (!input.hasNextInt()) {
 			System.out.println("Please enter a number!");
 			input.nextLine();
 		}
-		numOfPlayers= input.nextInt();
+		numOfPlayers = input.nextInt();
 		addPlayers(numOfPlayers);
 
 		gameTable = gameFactory.createTable(dealer, this.users);
-		if(!gameTable.isSetUp) {
+		if (!gameTable.isSetUp) {
 			gameTable.setupTable();
 		}
 		startGame();
 	}
 
-	//TODO write ability to save games to file
+	// TODO write ability to save games to file
 	public void saveGame() {
 
 	}
-	//TODO write ability to load games from file
+
+	// TODO write ability to load games from file
 	public void loadGame() {
 
 	}
@@ -101,6 +103,7 @@ public class GameMaker {
 	public void getCard() {
 
 	}
+
 	public void setCard() {
 
 	}
@@ -113,7 +116,7 @@ public class GameMaker {
 		// TODO Auto-generated method stub
 		gameTable.startGame();
 
-//		gameTable = null;
+		// gameTable = null;
 
 	}
 

@@ -1,23 +1,13 @@
 /*
- * Player class
- * 
- * Version 0.1_dev
- * 
- * Copyright (c) Ramel Henderson, David Brown, Rory Andrews, Kevin Nause, Joseph Cohen, Gabriel Harris-Rouquette  2012
- * 
- * All Rights Reserved
- * 
+ * Player class Version 0.1_dev Copyright (c) Ramel Henderson, David Brown, Rory
+ * Andrews, Kevin Nause, Joseph Cohen, Gabriel Harris-Rouquette 2012 All Rights
+ * Reserved
  */
 
 /*
- * Player class
- * 
- * Version 0.1_dev
- * 
- * Copyright (c) Ramel Henderson, David Brown, Rory Andrews, Kevin Nause, Joseph Cohen, Gabriel Harris-Rouquette  2012
- * 
- * All Rights Reserved
- * 
+ * Player class Version 0.1_dev Copyright (c) Ramel Henderson, David Brown, Rory
+ * Andrews, Kevin Nause, Joseph Cohen, Gabriel Harris-Rouquette 2012 All Rights
+ * Reserved
  */
 
 package com.whitejack.api;
@@ -36,10 +26,9 @@ public abstract class Player {
 	private int handValue;
 	public boolean isPlayable;
 	private boolean ace;
+
+	// Depreciated attributes
 	public Card card[]; // don't need
-
-	// Set up logger
-
 	public int cardCount = 0;
 
 	public Player() {
@@ -53,6 +42,10 @@ public abstract class Player {
 
 	}
 
+	/**
+	 * @deprecated This is used for a single thread program. DO NOT USE
+	 * @param deck
+	 */
 	public void requestCard(Deck deck) {
 		log.debug("[Player] Just to check that Player.recieveCard() has just been called."); // Debugging
 																								// line

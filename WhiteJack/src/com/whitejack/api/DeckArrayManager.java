@@ -4,7 +4,14 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+/**
+ * 
+ * 
+ * @author gabizou
+ *
+ */
 public class DeckArrayManager extends Deck {
+
 	public DeckArrayManager(int n) {
 		super(n);
 		// TODO Auto-generated constructor stub
@@ -78,22 +85,28 @@ public class DeckArrayManager extends Deck {
 		}
 	}
 
-	/**
-	 * 
-	 * @param cardID
-	 * @return
-	 */
-	public int serveHand(int cardID) { // Deal out one hand to one player
-		int temp = 0;
-		for (int i = count; i < count + 1; i++) {
-			String suit = suits[deck[i] / 13];
-			String rank = ranks[deck[i] % 13];
-			log.debug("[DeckArrayManager] Card number " + deck[i] + ": " + rank + " of " + suit);
-			count++;
-			temp = deck[i];
+	public ArrayList<Card> getRecycleBin() {
+		return recycleBin;
+	}
 
-		}
-		return temp;
+	public void setRecycleBin(ArrayList<Card> recycleBin) {
+		this.recycleBin = recycleBin;
+	}
+
+	public ArrayList<Card> getStack() {
+		return stack;
+	}
+
+	public void setStack(ArrayList<Card> stack) {
+		this.stack = stack;
+	}
+
+	public ArrayList<Card> getHeap() {
+		return heap;
+	}
+
+	public void setHeap(ArrayList<Card> heap) {
+		this.heap = heap;
 	}
 
 	/**
@@ -106,5 +119,13 @@ public class DeckArrayManager extends Deck {
 	 * Setter for Card
 	 */
 	public void setCard() {
+	}
+
+	public boolean isCardIsPlayable() {
+		return cardIsPlayable;
+	}
+
+	public void setCardIsPlayable(boolean cardIsPlayable) {
+		this.cardIsPlayable = cardIsPlayable;
 	}
 }

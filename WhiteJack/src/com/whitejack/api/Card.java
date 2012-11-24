@@ -4,8 +4,6 @@ import java.net.URL;
 
 import javax.swing.ImageIcon;
 
-import com.whitejack.api.applets.BetHandler;
-
 /**
  * Card is a superclass of Deck. Card contains the methods of retrieving
  * attributes per instantialized card.
@@ -17,33 +15,33 @@ public class Card {
 
 	private int cardID;
 	private int value;
-	private String suit;
 	protected String[] suits = { "Spades", "Hearts", "Diamonds", "Clubs" };
-	protected String[] ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9",
-			"10", "Jack", "Queen", "King" };
+	protected String[] ranks = { "Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack",
+			"Queen", "King" };
+	private String suit;
 	private String rank;
-	private URL url;
 	private String path;
+	private URL url;
 	private ImageIcon icon;
 
 	public Card() {
 	}
 
 	public Card(int i) {
-		String suit = suits[i / 13];
-		String rank = ranks[i % 13];
+		this.suit = suits[i / 13];
+		this.rank = ranks[i % 13];
 
 	}
 
-	private void setPath(String string) {
+	public void setPath(String string) {
 		this.path = string;
 	}
 
-	private void setURL() {
+	public void setURL() {
 		path = "/com/whitejack/images/Cards/";
 		path += rank + suit;
 		url = Card.class.getResource(path);
-		icon = new ImageIcon(url);
+		setIcon(new ImageIcon(url));
 	}
 
 	public URL getURL() {
@@ -55,7 +53,7 @@ public class Card {
 		return suit;
 	}
 
-	private void setSuit() {
+	public void setSuit() {
 	}
 
 	public String getRank() {
@@ -90,7 +88,15 @@ public class Card {
 		return value;
 	}
 
-	private void setValue(int value) {
+	public void setValue(int value) {
 		this.value = value;
+	}
+
+	public ImageIcon getIcon() {
+		return icon;
+	}
+
+	public void setIcon(ImageIcon icon) {
+		this.icon = icon;
 	}
 }

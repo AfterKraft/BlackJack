@@ -2,10 +2,6 @@ package com.whitejack.app;
 
 import org.apache.log4j.Logger;
 
-import com.whitejack.api.GameFactory;
-import com.whitejack.api.GameMaker;
-import com.whitejack.gofish.GoFishFactory;
-
 public class WhiteFish {
 
 	// initialize starting variables for startup

@@ -21,9 +21,9 @@ public class Deck extends Card {
 	private int numCards = 52;
 
 	public Deck(int n) {
-		this.numCards = n;
+		this.setNumCards(n);
 		isShuffled = false;
-		cardCount = 0;
+		setCardCount(0);
 	}
 
 	// Recycle all cards into stack
@@ -58,7 +58,7 @@ public class Deck extends Card {
 			deck[i] = deck[index];
 			deck[index] = temp;
 		}
-		log.debug("[DeckArrayManager] shuffle() method");
+		log.debug("["+Deck.class.getName()+"] shuffle() method");
 	}
 
 	public Card serveCard() {
@@ -83,17 +83,29 @@ public class Deck extends Card {
 			deck[i] = i;
 	}
 
-	private void serveHand(int cardID) { // Deal out one hand to one player
-		int temp = 0;
-		for (int i = count; i < count + 1; i++) {
-			String suit = suits[deck[i] / 13];
-			String rank = ranks[deck[i] % 13];
+	/**
+	 * Returns a hand array with the @param cardAmmount of cards already dealt through the method.
+	 * 
+	 * @param cardAmmount Determines the amount of cards to deal into the hand array before returning the array
+	 * @return
+	 */
+	public Hand[] serveHand(int cardAmmount) {
+		int tempCardID = 0;
+		Card tempCard = new Card();
+		Hand[] hand = new Hand[1];
+		for (int i = cardAmmount; i < cardAmmount + 1; i++) {
+			String suit = suits[deck[count] / 13];
+			String rank = ranks[deck[count] % 13];
 			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
 			count++;
-			temp = deck[i];
+			tempCardID = deck[i];
+			tempCard.setCardID(tempCardID);
+			hand[1].add(tempCard);
 
 		}
-		log.debug("[DeckArrayManager] serveHand() method");
+		log.debug("[Deck] serveHand() method");
+		
+		return hand;
 	}
 
 	/**
@@ -133,5 +145,29 @@ public class Deck extends Card {
 		 * int count = temp.getValue(); if(count>9) cardCount--; else
 		 * if(count<7) cardCount++; return temp;
 		 */
+	}
+
+	public int getNumDecks() {
+		return numDecks;
+	}
+
+	public void setNumDecks(int numDecks) {
+		this.numDecks = numDecks;
+	}
+
+	public int getNumCards() {
+		return numCards;
+	}
+
+	public void setNumCards(int numCards) {
+		this.numCards = numCards;
+	}
+
+	public int getCardCount() {
+		return cardCount;
+	}
+
+	public void setCardCount(int cardCount) {
+		this.cardCount = cardCount;
 	}
 }

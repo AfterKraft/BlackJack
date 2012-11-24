@@ -6,9 +6,6 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
-import com.whitejack.blackjack.BlackJackGame;
-import com.whitejack.blackjack.BlackJackGameTable;
-
 /**
  * A setup class to create games, determining amount of players etc.
  * 
@@ -42,7 +39,6 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 		this.numOfPlayers = numOfPlayers;
 		this.users = new ArrayList<User>();
 
-		@SuppressWarnings("resource")
 		Scanner input = new Scanner(System.in);
 		for (int i = 0; i < numOfPlayers; i++) {
 			User tempUser = new User();
@@ -73,7 +69,6 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 	 * 
 	 * @param gf
 	 */
-	@SuppressWarnings("resource")
 	public void setupGame() {
 		// Sets up Dealer and Deck
 		Dealer dealer = new Dealer();

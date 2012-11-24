@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 public class Hand extends ArrayList<Card> {
 
-	ArrayList<Card> hand = new ArrayList<Card>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5806792970726451666L;
+	public ArrayList<Card> hand = new ArrayList<Card>();
 
 	public Hand(int n) {
 		super(n);
@@ -12,6 +16,7 @@ public class Hand extends ArrayList<Card> {
 	}
 
 	public int getValue() {
+		
 		return 0;
 	}
 

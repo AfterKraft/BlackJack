@@ -32,7 +32,6 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 	@Override
 	public void setupTable() {
 		for (User user : users) {
-			@SuppressWarnings("resource")
 			Scanner bet = new Scanner(System.in);
 			System.out.print(user.userName
 					+ ", how much would you like to bet?");
@@ -93,10 +92,12 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 		this.game = new BlackJackGame();
 
 		for (User user : users) { //Deal two cards for each user
-			System.out.println("The deck count is at: "+ deck.getCount());
+			log.debug("The deck count is at: "+ deck.getCount());
 			Card card = deck.serveCard();
-			System.out.println("The deck count is at: "+ deck.getCount());
-			System.out.println("card is: " + card.getSuit() + " of " + card.getRank());
+			log.debug("The deck count is at: "+ deck.getCount());
+			log.debug("card is: " + card.getSuit() + " of " + card.getRank());
+			user.addCard(card, 0);
+			log.info("Hey, "+user.userName+", your first hand has a:"+user.hand[0].getValue());
 
 		}
 	}

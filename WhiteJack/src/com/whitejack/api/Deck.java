@@ -16,7 +16,7 @@ public class Deck extends Card {
 	protected int count = 0;
 	private int i;
 	public boolean isShuffled;
-	private int cardCount;
+	private int cardCount = 0;
 	private static Logger log = Logger.getLogger("WhiteJack");
 	private int numDecks = 1;
 	private int numCards = 52;
@@ -55,13 +55,17 @@ public class Deck extends Card {
 		for (int i = 0; i < deck.length; i++) {
 			// Generate an index randomly
 			int index = (int) (Math.random() * deck.length);
-			int temp = deck[i];
+			int temp = deck[count];
 			deck[i] = deck[index];
 			deck[index] = temp;
 		}
 		log.debug("[DeckArrayManager] shuffle() method");
 	}
 
+	private void setCount()
+	{
+		
+	}
 	public Card serveCard() {
 		Card temp = new Card();
 		int tempID = 0;
@@ -70,7 +74,7 @@ public class Deck extends Card {
 		log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
 		count++;
 		tempID = deck[i];
-		log.debug("[DeckArrayManager] serveHand() method");
+		log.debug("[Deck] serveHand() method");
 		temp.setCardID(tempID);
 		return temp;
 	}
@@ -85,16 +89,16 @@ public class Deck extends Card {
 	}
 
 	private void serveHand(int cardID) { // Deal out one hand to one player
-		int temp = 0;
+		int temporaryIntVariable = 0;
 		for (int i = count; i < count + 1; i++) {
+			Card temp = new Card();
 			String suit = suits[deck[i] / 13];
 			String rank = ranks[deck[i] % 13];
 			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
 			count++;
-			temp = deck[i];
-
+			temporaryIntVariable = deck[i];
 		}
-		log.debug("[DeckArrayManager] serveHand() method");
+		log.debug("[Deck] serveHand() method");
 	}
 
 	/**

@@ -19,28 +19,31 @@ import org.apache.log4j.Logger;
  * @author gabizou
  * 
  */
-public class BlackJackGame extends Game {
+
+public class BlackJackGame extends Game {	// Below are some instance variables and methods I borrowed from Yossi's code.
 	public Dealer dealer;
 	public DeckArrayManager deck;
 	public User user;
 	public boolean stand, bust;
+	// public Scanner input;
 	public BetHandler betHandler;
 	public Scanner input = new Scanner(System.in);
+
+	private static final Logger log = Logger.getLogger("WhiteJack");
 
 	public enum Play {
 		Hit, Stay, Stand, DoubleDown, Split, Surrender
 	};
 
-	private static final Logger log = Logger.getLogger("WhiteJack");
-
 	public BlackJackGame() {
 	}
 
 	@Override
-	public void start() {
+	public void start() {	//Request Bet from players - this is the START POINT of the race to beat the dealer
 		betHandler = new BetHandler(); // first order is to start bet
 		System.out.println("hi");
 		log.debug("[BlackJack] inside start() method");
+		
 	}
 
 	public void play() {
@@ -53,23 +56,59 @@ public class BlackJackGame extends Game {
 	 * 
 	 * @param player
 	 */
-	protected void requestCard(Player player) {
+	public Player determineWinningHand(User user)
+	{
+		Player temp = user;
+		// determine winning amount forEach (hand) { // forEach loop // }
+		
+		return user;
+		// determine winning amount forEach (hand) { // forEach loop // }
+	}
+	public Player determineLoser(User user)
+	{
+		Player temp = user;
+		return user;
+	}
+	public void setWinner(User user)
+	{
+		
+	}
+	public void playerTimeOut()
+	{
+		
+	}
+	public void setLoser(User user)
+	{
+		
+	}
+	protected void requestCardForPlayer(Player player) {
 		System.out.println(player.userName + " has requested a card!");
 	}
 
-	protected void stand(Player player) {
+	protected void requestHandForPlayer(Player player) {
+		System.out.println(player.userName + " has requested a hand!");
+
+	}
+
+	protected void stand(Player player) { // throw PlayerOptionEvent object
 		System.out.println(player.userName + " has stood up!");
 	}
 
-	protected void split(Player player) {
+	protected void split(Player player) { // throw PlayerOptionEvent object
 		System.out.println(player.userName
 				+ " has requested to split their hand!");
 	}
 
 	protected void doubleDown(Player player) {
+		// throw PlayerOptionEvent object
 		System.out.println(player.userName + " has requested to double down!");
 	}
 
+	public void surrender(Player player)
+	{
+		System.out.println(player.userName + " has requested to double down!");
+	}
 	public void run() {
+
 	}
 }

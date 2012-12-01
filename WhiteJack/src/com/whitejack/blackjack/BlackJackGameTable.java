@@ -92,7 +92,7 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 	protected void startGame() {
 		this.game = new BlackJackGame();
 
-		for (User user : users) {
+		for (User user : users) {	// DEAL out a hand to each player:user
 			// game.requestCardForPlayer(user);
 			// game.doubleDown(user);
 			// game.split(user);
@@ -100,7 +100,7 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 			Card card = deck.serveCard();
 			System.out.println("card is: " + card.getSuit() + " of "
 					+ card.getRank());
-
+//			Hand hand = deck.serveHand();
 		}
 	}
 
@@ -140,7 +140,7 @@ public class BlackJackGameTable extends GameTable<BlackJackGame> {
 	}
 
 	@Override
-	protected boolean play(User user) {
+	protected boolean  play(User user) {
 		// TODO Auto-generated method stub
 		return false;
 	}

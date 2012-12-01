@@ -56,6 +56,31 @@ public class BlackJackGame extends Game {
 	 * 
 	 * @param player
 	 */
+	public Player determineWinningHand(User user)
+	{
+		Player temp = user;
+		// determine winning amount forEach (hand) { // forEach loop // }
+		
+		return user;
+		// determine winning amount forEach (hand) { // forEach loop // }
+	}
+	public Player determineLoser(User user)
+	{
+		Player temp = user;
+		return user;
+	}
+	public void setWinner(User user)
+	{
+		
+	}
+	public void playerTimeOut()
+	{
+		
+	}
+	public void setLoser(User user)
+	{
+		
+	}
 	protected void requestCardForPlayer(Player player) {
 		System.out.println(player.userName + " has requested a card!");
 	}
@@ -79,6 +104,10 @@ public class BlackJackGame extends Game {
 		System.out.println(player.userName + " has requested to double down!");
 	}
 
+	public void surrender(Player player)
+	{
+		System.out.println(player.userName + " has requested to double down!");
+	}
 	public void run() {
 
 	}

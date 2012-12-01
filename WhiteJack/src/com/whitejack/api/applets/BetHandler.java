@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -12,7 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class BetHandler extends JApplet {
+public class BetHandler extends JApplet implements ActionListener 
+{
 	/**
 	 * 
 	 */
@@ -28,14 +31,8 @@ public class BetHandler extends JApplet {
 		frame.setSize(1095, 135);
 		frame.add(this);
 		p = new MyPanel();
-		// p.addActionListener(new ActionListener()
-		// {
-		// public void actionPerformed(ActionEvent e)
-		// {
-		// System.out.println("You just bet ");
-		// }
-		// });
 
+		frame.addActionListener(this);
 		setBackground(Color.YELLOW);
 		this.add(p, BorderLayout.CENTER);
 		this.add(t1, BorderLayout.SOUTH);
@@ -51,29 +48,18 @@ public class BetHandler extends JApplet {
 		return new BetHandler();
 	}
 
-	public class MyPanel extends JPanel {
+	public class MyPanel extends JPanel 
+	{
 
-		/**
-		 * 
-		 */
+		/** instance variables	 */
 		private static final long serialVersionUID = 1L;
 		private URL path = BetHandler.class
-				.getResource("/com/whitejack/images/GameTable/WoodUp.gif"); // MAKE
-																			// SURE
-																			// TO
-																			// CHANGE
-																			// THIS
-																			// BACK
-																			// TO
-																			// THE
-																			// REAL
-																			// PATH
+				.getResource("/com/whitejack/images/GameTable/WoodUp.gif"); 
 
 		public MyPanel() {
 			setPreferredSize(new Dimension(1095, 95));
 			setBackground(Color.GREEN);
 			setLayout(new BorderLayout());
-			// this.addActionListener(this);
 			repaint();
 		}
 
@@ -87,14 +73,14 @@ public class BetHandler extends JApplet {
 			g.drawImage(icon.getImage(), 0, 0, 1095, 55, this);
 		}
 	}
-	// public static class PanelListener implements ActionListener
-	// {
-	// TODO Auto-generated constructor stub
-	// public void actionPerformed(ActionEvent e)
-	// {
-	//
-	// System.out.println("You just bet ");
-	// }
-	// }
+	
+	@Override
+	public void actionPerformed(ActionEvent arg0) 
+	{
+		// Now extract form variable and assign it to user attribute bet
+		String s = t1.getText();
+		int n = Integer.parseInt(s);
+		System.out.println(s);
+	}
 
 }

@@ -5,24 +5,29 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 
 public class DeckArrayManager extends Deck {
-	public DeckArrayManager(int n) {
+	public DeckArrayManager(int n) 
+	{
 		super(n);
 		// TODO Auto-generated constructor stub
 	}
-
 	private static DeckArrayManager instance;
-	private boolean cardIsPlayable = true;
+	private static Logger log = Logger.getLogger("WhiteJackAPI");
+	
 	private Card[] card;
-	private ArrayList<Card> stack = new ArrayList<Card>();
+	private ArrayList<Card> stack;
 	private ArrayList<Card> heap = new ArrayList<Card>();
 	private ArrayList<Card> recycleBin = new ArrayList<Card>();
-	private static Logger log = Logger.getLogger("WhiteJackAPI");
-
+	
 	/**
 	 * This method is accessed from outside the class by deck =
 	 * DeckArrayManager.getDeckArrayManager();
 	 */
-
+	public ArrayList<Card> createStack()
+	{
+		stack  = new ArrayList<Card>();
+		return stack;
+		
+	}
 	public int getCount() {
 		return count;
 	}
@@ -83,18 +88,18 @@ public class DeckArrayManager extends Deck {
 	 * @param cardID
 	 * @return
 	 */
-	public int serveHand(int cardID) { // Deal out one hand to one player
-		int temp = 0;
-		for (int i = count; i < count + 1; i++) {
-			String suit = suits[deck[i] / 13];
-			String rank = ranks[deck[i] % 13];
-			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
-			count++;
-			temp = deck[i];
+//	public int serveHand(int cardID) { // Deal out one hand to one player
+//		int temp = 0;
+//		for (int i = count; i < count + 1; i++) {
+//			String suit = suits[deck[i] / 13];
+//			String rank = ranks[deck[i] % 13];
+//			log.debug("Card number " + deck[i] + ": " + rank + " of " + suit);
+//			count++;
+//			temp = deck[i];
 
-		}
-		return temp;
-	}
+//		}
+//		return temp;
+//	}
 
 	/**
 	 * Getter for Card

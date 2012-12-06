@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
  * 
  * 
  * @author gabizou
- *
+ * 
  */
 public class DeckArrayManager extends Deck {
 

@@ -9,7 +9,6 @@ public class User extends Player {
 
 	public String playerName;
 	public String dateCreated;
-	public Hand[] hand;
 	public int bet;
 	public int balance;
 	private static Logger log = Logger.getLogger("WhiteJack");
@@ -21,18 +20,19 @@ public class User extends Player {
 	public User() { // Generates a default user with a default name
 
 		hand = new Hand[6];
-		log.warn("[User] Making a Default User!"); // Debugging Line
+		log.debug("[User] Making a Default User!"); // Debugging Line
 		balance = 300;
 		playerName = "DefaultUser";
 		userName = playerName;
 		isPlayable = true;
 		Time time = new Time();
 		dateCreated = time.getCurrentTime();
-		log.warn("[User] Default user created!"); // Debugging Line
+		log.debug("[User] Default user created!"); // Debugging Line
 
 	}
 
-	public User(String playerName, String userName) { //Generates a personalized user for future user accounts
+	public User(String playerName, String userName, int handSize) { //Generates a personalized user for future user accounts
+		hand = new Hand[handSize];
 		this.playerName = playerName;
 		this.userName = userName;
 		Time time = new Time();

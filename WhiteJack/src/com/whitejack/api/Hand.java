@@ -8,16 +8,16 @@ public class Hand extends ArrayList<Card> {
 	 * 
 	 */
 	private static final long serialVersionUID = -5806792970726451666L;
-	public ArrayList<Card> hand = new ArrayList<Card>();
 
-	public Hand(int n) {
-		super(n);
-		// TODO Auto-generated constructor stub
+	public Hand() {
 	}
 
-	public int getValue() {
+	public int getCards(Hand[] hands) {
+		return modCount;
+	}
+	
+	public void add() {
 		
-		return 0;
 	}
 
 	public boolean isHitOption() {

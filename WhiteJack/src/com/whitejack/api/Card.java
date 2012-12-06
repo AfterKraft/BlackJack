@@ -26,6 +26,11 @@ public class Card {
 
 	public Card() {
 	}
+	
+	@Override
+	public String toString() {
+		return getRank()+" of "+getSuit();
+	}
 
 	public Card(int i) {
 		this.suit = suits[i / 13];

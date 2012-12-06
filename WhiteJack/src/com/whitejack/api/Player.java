@@ -20,7 +20,7 @@ public abstract class Player {
 
 	// Set default variables
 	public String userName;
-	protected Hand[] hand;
+	public Hand[] hand;
 	public boolean isActiveUser = false;
 	protected int balance;
 	private int handValue;
@@ -32,14 +32,6 @@ public abstract class Player {
 	public int cardCount = 0;
 
 	public Player() {
-		// card is no longer needed as hand serves same functionality
-		card = new Card[10]; // For the sake of initializing
-		hand = new Hand[4];
-	}
-
-	public Player(String username) {
-		card = new Card[10]; // For the sake of initializing
-
 	}
 
 	/**
@@ -72,15 +64,17 @@ public abstract class Player {
 
 	}
 
-	public void addHand(Hand hand) {
+	public void addHand(Hand hand, int MAX_HANDS) {
 		int empty = 0;
-		for (int i = 0; i < 4; i++) {
-			if (this.hand[i] == null) {
+		int i=0;
+		do {
+			if (this.hand[i].isEmpty()) {
 				empty = i;
-			} else {
-				empty++;
+				log.debug("There's the hand that it was added in as" +i);
 			}
-		}
+			i++;
+		} while (!this.hand[i].isEmpty());
+		log.debug(hand+ "With the hand number at "+empty);
 		this.hand[empty] = hand;
 	}
 

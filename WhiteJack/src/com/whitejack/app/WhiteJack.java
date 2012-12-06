@@ -24,7 +24,7 @@ public class WhiteJack {
 		log.info("\n");
 
 		// Start GameMaker
-		GameMaker<BlackJackGame, BlackJackGameTable, BlackJackFactory> GM = new GameMaker<BlackJackGame, BlackJackGameTable, BlackJackFactory>(); // Initialize
+		GameMaker<BlackJackGame, BlackJackGameTable, BlackJackFactory> GM = new GameMaker<BlackJackGame, BlackJackGameTable, BlackJackFactory>(4); // Initialize
 
 		GM.gameFactory = new BlackJackFactory();
 		GM.setupGame(); // Start the Game making process

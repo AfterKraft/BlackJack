@@ -58,7 +58,7 @@ public class Deck extends Card {
 			deck[i] = deck[index];
 			deck[index] = temp;
 		}
-		log.debug("["+Deck.class.getName()+"] shuffle() method");
+		log.debug("[" + Deck.class.getName() + "] shuffle() method");
 	}
 
 	public Card serveCard() {
@@ -84,9 +84,12 @@ public class Deck extends Card {
 	}
 
 	/**
-	 * Returns a hand array with the @param cardAmmount of cards already dealt through the method.
+	 * Returns a hand array with the @param cardAmmount of cards already dealt
+	 * through the method.
 	 * 
-	 * @param cardAmmount Determines the amount of cards to deal into the hand array before returning the array
+	 * @param cardAmmount
+	 *            Determines the amount of cards to deal into the hand array
+	 *            before returning the array
 	 * @return
 	 */
 	public Hand[] serveHand(int cardAmmount) {
@@ -104,7 +107,7 @@ public class Deck extends Card {
 
 		}
 		log.debug("[Deck] serveHand() method");
-		
+
 		return hand;
 	}
 
@@ -131,19 +134,13 @@ public class Deck extends Card {
 		/*
 		 * log.debug(
 		 * "[Deck] Check to make sure the Deck.dealcard has been started. in Deck"
-		 * ); //Debugging line
-		 * 
-		 * Card temp=card[i]; log.debug(
+		 * ); //Debugging line Card temp=card[i]; log.debug(
 		 * "[Deck] The temporary temp object of type Card has been created!");
-		 * //Debugging line
-		 * 
-		 * i++; log.debug("[Deck] i has been post incremented!"); //Debugging
-		 * line
-		 * 
-		 * log.debug("[Deck] temp has a value of: "+ temp); //Debugging line
-		 * 
-		 * int count = temp.getValue(); if(count>9) cardCount--; else
-		 * if(count<7) cardCount++; return temp;
+		 * //Debugging line i++;
+		 * log.debug("[Deck] i has been post incremented!"); //Debugging line
+		 * log.debug("[Deck] temp has a value of: "+ temp); //Debugging line int
+		 * count = temp.getValue(); if(count>9) cardCount--; else if(count<7)
+		 * cardCount++; return temp;
 		 */
 	}
 

@@ -15,15 +15,18 @@ import org.apache.log4j.Logger;
 public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameFactory<G, GT>> {
 	protected G game;
 	protected GT gameTable;
+	
 	protected List<User> users;
 	private static Logger log = Logger.getLogger("WhiteJack");
 	private int numOfPlayers;
+	private int maxHandSize;
 
 	public GF gameFactory;
 
 	// private Scanner input = new Scanner(System.in);
 
-	public GameMaker() {
+	public GameMaker(int handSize) {
+		maxHandSize = handSize;
 		log.info("GameMaker Started!");
 	}
 
@@ -48,7 +51,7 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 			tempUser.playerName = tempUser.userName;
 			log.info("Thank you, " + tempUser.userName
 					+ " has been added to the game.");
-			User user = new User(tempUser.userName, tempUser.playerName);
+			User user = new User(tempUser.userName, tempUser.playerName, maxHandSize);
 			this.users.add(user);
 			int temp = users.indexOf(user);
 			log.debug("Yo, this user " + user.userName + " has an index of: "

@@ -59,9 +59,6 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 		}
 		System.out.println("All players have been added.");
 
-		// System.out.println("Player: "+ player.userName+
-		// " has been added to the game!"); //Old debug line
-
 	}
 
 	/**
@@ -73,7 +70,6 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 	 * @param gf
 	 */
 	public void setupGame() {
-		// Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 
 		Scanner input = new Scanner(System.in);

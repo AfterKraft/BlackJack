@@ -3,13 +3,15 @@ package com.whitejack.api;
 import java.util.List;
 
 /**
- * GameFactory is now using Generics of Types Game and GameTable.
- * These must be honored in all of our API & API implementation.
+ * GameFactory is now using Generics of Types Game and GameTable. These must be
+ * honored in all of our API & API implementation.
  * 
  * @author gabizou
- *
- * @param <G> Type Game
- * @param <GT>  Type GameTable
+ * 
+ * @param <G>
+ *            Type Game
+ * @param <GT>
+ *            Type GameTable
  */
 public interface GameFactory<G extends Game, GT extends GameTable<G>> {
 

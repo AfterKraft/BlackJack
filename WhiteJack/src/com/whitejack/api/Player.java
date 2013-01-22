@@ -4,6 +4,12 @@
  * Reserved
  */
 
+/*
+ * Player class Version 0.1_dev Copyright (c) Ramel Henderson, David Brown, Rory
+ * Andrews, Kevin Nause, Joseph Cohen, Gabriel Harris-Rouquette 2012 All Rights
+ * Reserved
+ */
+
 package com.whitejack.api;
 
 import org.apache.log4j.Logger;
@@ -14,32 +20,27 @@ public abstract class Player {
 
 	// Set default variables
 	public String userName;
-	protected int[] Hand;
+	public Hand[] hand;
 	public boolean isActiveUser = false;
 	protected int balance;
 	private int handValue;
 	public boolean isPlayable;
 	private boolean ace;
-	public Card card[];
 
-	// Set up logger
-
+	// Depreciated attributes
+	public Card card[]; // don't need
 	public int cardCount = 0;
 
 	public Player() {
-
-		card = new Card[10]; // For the sake of initializing
-
 	}
 
-	public Player(String username) {
-		card = new Card[10]; // For the sake of initializing
-
-	}
-
-	public void recieveCard(Deck deck) {
-		log.debug("[Player] Just to check that Player.recieveCard() has just been called.");
-		// Debugging line
+	/**
+	 * @deprecated This is used for a single thread program. DO NOT USE
+	 * @param deck
+	 */
+	public void requestCard(Deck deck) {
+		log.debug("[Player] Just to check that Player.recieveCard() has just been called."); // Debugging
+																								// line
 
 		card[cardCount] = deck.dealCard();
 		log.debug("[Player] The Deck has just dealt a card to player by player"); // Debugging
@@ -63,24 +64,22 @@ public abstract class Player {
 
 	}
 
-	public void stand() {
-
+	public void addHand(Hand hand, int MAX_HANDS) {
+		int empty = 0;
+		int i=0;
+		do {
+			if (this.hand[i].isEmpty()) {
+				empty = i;
+				log.debug("There's the hand that it was added in as" +i);
+			}
+			i++;
+		} while (!this.hand[i].isEmpty());
+		log.debug(hand+ "With the hand number at "+empty);
+		this.hand[empty] = hand;
 	}
 
-	public void hit() {
-
-	}
-
-	public void surrender() {
-
-	}
-
-	public void split() {
-
-	}
-
-	public void doubleDown() {
-
+	public void addCard(Card card, int handID) {
+		this.hand[handID].add(card);
 	}
 
 	/**
@@ -96,7 +95,8 @@ public abstract class Player {
 		status[0] = userName;
 		status[1] = Integer.toString(balance);
 		status[2] = Boolean.toString(isActiveUser);
-		status[3] = Integer.toString(Hand[0]);
+		// status[3] = Integer.toString(hand[0]);
+		// I commented this out for now to keep the code from breaking
 
 		return status;
 	}

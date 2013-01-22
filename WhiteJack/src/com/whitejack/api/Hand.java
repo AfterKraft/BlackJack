@@ -1,20 +1,23 @@
 package com.whitejack.api;
 
-public class Hand {
+import java.util.ArrayList;
 
-	public String[] suits;
-	public String[] rank;
-	public String[] card;
+public class Hand extends ArrayList<Card> {
 
-	public Player player;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5806792970726451666L;
 
-	public int getValue() {
-		return 0;
-
+	public Hand() {
 	}
 
-	public Player getPlayer() {
-		return player;
+	public int getCards(Hand[] hands) {
+		return modCount;
+	}
+	
+	public void add() {
+		
 	}
 
 	public boolean isHitOption() {

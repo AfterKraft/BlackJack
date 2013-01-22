@@ -15,15 +15,18 @@ import org.apache.log4j.Logger;
 public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameFactory<G, GT>> {
 	protected G game;
 	protected GT gameTable;
+	
 	protected List<User> users;
 	private static Logger log = Logger.getLogger("WhiteJack");
 	private int numOfPlayers;
+	private int maxHandSize;
 
 	public GF gameFactory;
 
 	// private Scanner input = new Scanner(System.in);
 
-	public GameMaker() {
+	public GameMaker(int handSize) {
+		maxHandSize = handSize;
 		log.info("GameMaker Started!");
 	}
 
@@ -46,16 +49,15 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 			log.info("Alright, Player " + (i + 1) + ": What is your name?\n");
 			tempUser.userName = input.nextLine();
 			tempUser.playerName = tempUser.userName;
-			log.info("Thank you, " + tempUser.userName + " has been added to the game.");
-			User user = new User(tempUser.userName, tempUser.playerName);
+			log.info("Thank you, " + tempUser.userName
+					+ " has been added to the game.");
+			User user = new User(tempUser.userName, tempUser.playerName, maxHandSize);
 			this.users.add(user);
 			int temp = users.indexOf(user);
-			log.debug("Yo, this user " + user.userName + " has an index of: " + temp);
+			log.debug("Yo, this user " + user.userName + " has an index of: "
+					+ temp);
 		}
 		System.out.println("All players have been added.");
-
-		// System.out.println("Player: "+ player.userName+
-		// " has been added to the game!"); //Old debug line
 
 	}
 
@@ -64,10 +66,10 @@ public class GameMaker<G extends Game, GT extends GameTable<G>, GF extends GameF
 	 * 
 	 * Game = Game logic used by GameTable GameTable = container for the <User>
 	 * list and executes Game methods
+	 * 
+	 * @param gf
 	 */
 	public void setupGame() {
-
-		// Sets up Dealer and Deck
 		Dealer dealer = new Dealer();
 
 		Scanner input = new Scanner(System.in);
